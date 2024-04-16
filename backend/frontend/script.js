@@ -23,7 +23,6 @@ const loadUsers = async () => {
     }
 };
 
-// Evento de envio do formulário para criar um novo usuário
 userForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     const nome = document.getElementById('nome').value;
@@ -45,5 +44,4 @@ userForm.addEventListener('submit', async (event) => {
     }
 });
 
-// Carregar os usuários ao carregar a página
 loadUsers();
