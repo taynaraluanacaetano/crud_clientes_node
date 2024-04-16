@@ -1,0 +1,28 @@
+# Arquivos gerados pelo Node.js
+node_modules/
+
+# Arquivos de log
+*.log
+
+# Arquivos de build
+*.o
+*.obj
+*.dll
+*.exe
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de ambiente
+.env
+
+# Arquivos específicos do editor
+.vscode/
+
+# Arquivos específicos do sistema operacional
+.idea/
+*.swp
+
+# Arquivos de banco de dados
+database.sqlite
