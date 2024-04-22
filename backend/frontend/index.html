@@ -74,7 +74,17 @@
         <div class="success-message d-none" id="successMessage">
             Usuário cadastrado com sucesso!
         </div>
-        <div id="userList" class="mt-4"></div>
+        <div id="userList" class="mt-4">
+            <div class="user-item">
+                <p><strong>ID:</strong> 1</p>
+                <p><strong>Nome:</strong> João</p>
+                <p><strong>Telefone:</strong> 123456789</p>
+                <p><strong>Email:</strong> joao@example.com</p>
+                <button class="btn btn-danger delete-user-btn" data-user-id="1">Excluir</button>
+                <hr>
+              </div>
+              
+        </div>
     </div>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

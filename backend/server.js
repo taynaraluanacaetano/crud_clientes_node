@@ -45,6 +45,26 @@ app.post("/users", (req, res) => {
   );
 });
 
+app.delete('/users/:id', (req, res) => {
+  const userId = req.params.id;
+
+  db.serialize(() => {
+    db.run('BEGIN TRANSACTION');
+    db.run('DELETE FROM users WHERE id = ?', userId, function(err) {
+      if (err) {
+        console.error('Erro ao excluir usuário:', err.message);
+        db.run('ROLLBACK');
+        return res.status(500).json({ error: 'Erro ao excluir usuário' });
+      }
+      console.log('Usuário excluído com sucesso');
+      db.run('COMMIT');
+      res.json({ message: 'Usuário excluído com sucesso' });
+    });
+  });
+});
+
+
+
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
 });

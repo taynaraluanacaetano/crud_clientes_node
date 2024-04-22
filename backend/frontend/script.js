@@ -71,5 +71,25 @@ document.getElementById('userForm').addEventListener('submit', async (event) => 
     }
 });
 
+// Função para excluir um usuário
+const deleteUser = async (userId) => {
+    try {
+      await axios.delete(`http://localhost:3000/users/${userId}`);
+      console.log('Usuário excluído com sucesso');
+      loadUsers(); // Recarregar a lista de usuários após a exclusão
+    } catch (error) {
+      console.error('Erro ao excluir usuário:', error);
+    }
+  };
+  
+  // Adicionar um event listener para o botão de exclusão
+  document.getElementById('userList').addEventListener('click', async (event) => {
+    if (event.target.classList.contains('delete-user-btn')) {
+      const userId = event.target.dataset.userId;
+      await deleteUser(userId);
+    }
+  });
+  
+
 
 loadUsers();
