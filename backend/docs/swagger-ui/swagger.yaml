@@ -1,0 +1,84 @@
+swagger: '2.0'
+info:
+  version: '1.0.0'
+  title: 'API de Gerenciamento de Usuários'
+  description: 'API para cadastrar, listar, pesquisar e excluir usuários'
+
+basePath: /api
+
+paths:
+  /users:
+    get:
+      summary: Lista todos os usuários
+      responses:
+        200:
+          description: Lista de usuários retornada com sucesso
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/User'
+    post:
+      summary: Cria um novo usuário
+      parameters:
+        - in: body
+          name: user
+          description: Dados do usuário a ser criado
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        201:
+          description: Usuário criado com sucesso
+          schema:
+            $ref: '#/definitions/User'
+        400:
+          description: Erro de requisição inválida
+
+  /users/{id}:
+    get:
+      summary: Obtém um usuário pelo ID
+      parameters:
+        - in: path
+          name: id
+          description: ID do usuário a ser obtido
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Usuário retornado com sucesso
+          schema:
+            $ref: '#/definitions/User'
+        404:
+          description: Usuário não encontrado
+    delete:
+      summary: Exclui um usuário pelo ID
+      parameters:
+        - in: path
+          name: id
+          description: ID do usuário a ser excluído
+          required: true
+          type: integer
+          format: int64
+      responses:
+        204:
+          description: Usuário excluído com sucesso
+        404:
+          description: Usuário não encontrado
+
+definitions:
+  User:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      nome:
+        type: string
+      telefone:
+        type: string
+      email:
+        type: string
+    required:
+      - nome
+      - email
