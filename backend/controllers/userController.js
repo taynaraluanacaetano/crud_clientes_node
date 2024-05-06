@@ -1,48 +1,30 @@
-const sqlite3 = require("sqlite3").verbose();
-
-const db = new sqlite3.Database("./database.sqlite", { busyTimeout: 10000 });
+const userService = require('../services/userService');
 
 exports.getAllUsers = (req, res) => {
-  db.all("SELECT * FROM users", (err, rows) => {
-    if (err) {
-      console.error("Erro ao carregar usuários:", err.message);
-      return res.status(500).json({ error: "Erro ao carregar usuários" });
-    }
-    res.json(rows);
-  });
+  userService.getAllUsers()
+    .then(users => res.json(users))
+    .catch(err => {
+      console.error('Erro ao carregar usuários:', err.message);
+      res.status(500).json({ error: 'Erro ao carregar usuários' });
+    });
 };
 
 exports.createUser = (req, res) => {
-  const { nome, telefone, email, senha } = req.body;
-
-  db.run(
-    "INSERT INTO users (nome, telefone, email, senha) VALUES (?, ?, ?, ?)",
-    [nome, telefone, email, senha],
-    function (err) {
-      if (err) {
-        console.error("Erro ao inserir usuário:", err.message);
-        return res.status(500).json({ error: "Erro ao inserir usuário" });
-      }
-      console.log("Novo usuário inserido com ID:", this.lastID);
-      res.status(201).json({ message: "Usuário criado com sucesso" });
-    }
-  );
+  const userData = req.body;
+  userService.createUser(userData)
+    .then(() => res.status(201).json({ message: 'Usuário criado com sucesso' }))
+    .catch(err => {
+      console.error('Erro ao inserir usuário:', err.message);
+      res.status(500).json({ error: 'Erro ao inserir usuário' });
+    });
 };
 
 exports.deleteUser = (req, res) => {
   const userId = req.params.id;
-
-  db.serialize(() => {
-    db.run('BEGIN TRANSACTION');
-    db.run('DELETE FROM users WHERE id = ?', userId, function(err) {
-      if (err) {
-        console.error('Erro ao excluir usuário:', err.message);
-        db.run('ROLLBACK');
-        return res.status(500).json({ error: 'Erro ao excluir usuário' });
-      }
-      console.log('Usuário excluído com sucesso');
-      db.run('COMMIT');
-      res.json({ message: 'Usuário excluído com sucesso' });
+  userService.deleteUser(userId)
+    .then(() => res.json({ message: 'Usuário excluído com sucesso' }))
+    .catch(err => {
+      console.error('Erro ao excluir usuário:', err.message);
+      res.status(500).json({ error: 'Erro ao excluir usuário' });
     });
-  });
 };
