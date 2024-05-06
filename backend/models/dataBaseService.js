@@ -55,3 +55,16 @@ exports.getUserById = (userId) => {
     });
   });
 };
+
+exports.updateUser = (req, res) => {
+  const userId = req.params.id;
+  const userData = req.body;
+  userService.updateUserById(userId, userData)
+    .then(updatedUser => {
+      res.status(200).json(updatedUser);
+    })
+    .catch(err => {
+      console.error('Erro ao atualizar usuário:', err.message);
+      res.status(500).json({ error: 'Erro ao atualizar usuário' });
+    });
+};
