@@ -39,8 +39,21 @@ app.post("/users", (req, res) => {
         console.error("Erro ao inserir usuário:", err.message);
         return res.status(500).json({ error: "Erro ao inserir usuário" });
       }
-      console.log("Novo usuário inserido com ID:", this.lastID);
-      res.status(201).json({ message: "Usuário criado com sucesso" });
+
+      const userId = this.lastID;
+
+      db.get(
+        "SELECT * FROM users WHERE id = ?",
+        [userId],
+        (err, row) => {
+          if (err) {
+            console.error("Erro ao obter dados do usuário:", err.message);
+            return res.status(500).json({ error: "Erro ao obter dados do usuário" });
+          }
+          console.log("Novo usuário inserido com ID:", userId);
+          res.status(201).json(row); 
+        }
+      );
     }
   );
 });
