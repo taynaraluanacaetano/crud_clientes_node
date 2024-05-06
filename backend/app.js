@@ -58,6 +58,27 @@ app.post("/users", (req, res) => {
   );
 });
 
+app.get('/users/:id', (req, res)=>{
+  const userId = req.params.id; 
+  db.get(
+    "SELECT * FROM users WHERE id = ?",
+    [userId],
+    (err, row)=>{
+      if(err){
+        console.error("Erro ao obter dados do usuário:", err.message);
+        return res.status(500).json({ error: "Erro ao obter dados do usuário" });
+      }
+      
+      if (!row) {
+        return res.status(404).json({ error: "Usuário não encontrado" });
+      }
+      
+      res.status(200).json(row);
+    }
+  )
+});
+
+
 app.delete('/users/:id', (req, res) => {
   const userId = req.params.id;
 
