@@ -4,8 +4,8 @@ exports.createUser = (req, res) => {
   const userData = req.body;
   userService.createUser(userData)
     .then(createdUser => {
-      const responseBody = { ...req.body, ...createdUser }; // Combina o corpo da requisição com os dados do usuário criado
-      res.status(201).json(responseBody); // Retorna o corpo completo da requisição junto com os dados do usuário criado
+      const responseBody = { ...req.body, ...createdUser };
+      res.status(201).json(responseBody); 
     })
     .catch(err => {
       console.error('Erro ao inserir usuário:', err.message);
@@ -28,7 +28,7 @@ exports.deleteUser = (req, res) => {
   const userId = req.params.id;
   userService.deleteUser(userId)
     .then(() => {
-      res.status(204).end(); // Resposta de sucesso sem conteúdo
+      res.status(204).end();
     })
     .catch(err => {
       console.error('Erro ao excluir usuário:', err.message);
@@ -48,5 +48,18 @@ exports.getUserById = (req, res) => {
     .catch(err => {
       console.error("Erro ao obter dados do usuário:", err.message);
       res.status(500).json({ error: "Erro ao obter dados do usuário" });
+    });
+};
+
+exports.updateUser = (req, res) => {
+  const userId = req.params.id;
+  const userData = req.body;
+  userService.updateUser(userId, userData)
+    .then(updatedUser => {
+      res.status(200).json(updatedUser);
+    })
+    .catch(err => {
+      console.error('Erro ao atualizar usuário:', err.message);
+      res.status(500).json({ error: 'Erro ao atualizar usuário' });
     });
 };

@@ -101,4 +101,37 @@ app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
 });
 
+app.put('/users/:id', (req, res) => {
+  const userId = req.params.id;
+  const { nome, telefone, email, senha } = req.body;
+
+  db.run(
+    'UPDATE users SET nome = ?, telefone = ?, email = ?, senha = ? WHERE id = ?',
+    [nome, telefone, email, senha, userId],
+    function (err) {
+      if (err) {
+        console.error('Erro ao atualizar usuário:', err.message);
+        return res.status(500).json({ error: 'Erro ao atualizar usuário' });
+      }
+
+      db.get(
+        'SELECT * FROM users WHERE id = ?',
+        [userId],
+        (err, row) => {
+          if (err) {
+            console.error('Erro ao obter dados do usuário atualizado:', err.message);
+            return res.status(500).json({ error: 'Erro ao obter dados do usuário atualizado' });
+          }
+
+          if (!row) {
+            return res.status(404).json({ error: 'Usuário não encontrado' });
+          }
+
+          res.status(200).json(row);
+        }
+      );
+    }
+  );
+});
+
 module.exports = app;

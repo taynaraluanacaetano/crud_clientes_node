@@ -18,3 +18,7 @@ exports.deleteUser = (userId) => {
 exports.getUserById = (userId)=>{
   return dbService.getUserById(userId);
 }
+
+exports.updateUserById = (userId, userData) => {
+  return dbService.updateUserById(userId, userData);
+};
