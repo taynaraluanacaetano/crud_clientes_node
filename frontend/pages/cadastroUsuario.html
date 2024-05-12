@@ -68,8 +68,7 @@
             bottom: 0;
             width: 100%;
         }
-
-        /* Estilo do botão Cadastrar */
+        
         .btn-cadastrar {
             background-color: var(--cor-botao-cadastrar);
             border-color: var(--cor-botao-cadastrar);
@@ -77,11 +76,10 @@
         }
 
         .btn-cadastrar:hover {
-            background-color: #5a524f; /* Altere para a cor de hover desejada */
-            border-color: #5a524f; /* Altere para a cor de hover desejada */
+            background-color: #5a524f;
+            border-color: #5a524f;
         }
 
-        /* Estilo do texto profissional */
         .texto-profissional {
             background-color: var(--cor-fundo-texto-profissional);
             padding: 10px;
@@ -90,7 +88,6 @@
             font-family: var(--fonte-profissional);
         }
 
-        /* Estilo da tabela */
         .table {
             background-color: var(--cor-fundo-form);
             color: var(--cor-texto-form);
@@ -147,12 +144,9 @@
     <div class="container">
         <h1 class="text-center mb-4">Cadastro de Usuários</h1>
         <div class="profile-container">
-            <div class="profile-pic">
-                <img src="../img/users.png" alt="Foto do Usuário" class="img-thumbnail">
-            </div>
         </div>
         <div class="form-container">
-            <form id="userForm">
+            <form id="userForm" action="http://localhost:3000/users" method="POST">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <input type="text" id="nome" class="form-control" placeholder="Nome" required>
@@ -186,7 +180,6 @@
                     </tr>
                 </thead>
                 <tbody id="userList">
-                    <!-- Os registros serão inseridos aqui via JavaScript -->
                 </tbody>
             </table>
         </div>
@@ -216,23 +209,47 @@
             var nome = document.getElementById("nome").value;
             var telefone = document.getElementById("telefone").value;
             var email = document.getElementById("email").value;
-            var userList = document.getElementById("userList");
+            var senha = document.getElementById("senha").value;
 
-            // Inserir os dados na tabela
-            var newRow = userList.insertRow();
-            newRow.innerHTML = `
-                <td>${nome}</td>
-                <td>${telefone}</td>
-                <td>${email}</td>
-                <td>
-                    <button type="button" class="btn btn-sm btn-primary">Editar</button>
-                    <button type="button" class="btn btn-sm btn-danger">Excluir</button>
-                </td>
-            `;
-
-            clearForm();
-            document.getElementById("successMessage").classList.remove("d-none");
+            axios.post("http://localhost:3000/users", {
+                nome: nome,
+                telefone: telefone,
+                email: email,
+                senha: senha
+            })
+            .then(function (response) {
+                clearForm();
+                document.getElementById("successMessage").classList.remove("d-none");
+                updateUserTable();
+            })
+            .catch(function (error) {
+                console.error("Erro ao cadastrar usuário:", error);
+            });
         });
+
+        function updateUserTable() {
+            axios.get("http://localhost:3000/users")
+            .then(function (response) {
+                var userList = document.getElementById("userList");
+                userList.innerHTML = "";
+
+                response.data.forEach(function(user) {
+                    var newRow = userList.insertRow();
+                    newRow.innerHTML = `
+                        <td>${user.nome}</td>
+                        <td>${user.telefone}</td>
+                        <td>${user.email}</td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-primary">Editar</button>
+                            <button type="button" class="btn btn-sm btn-danger">Excluir</button>
+                        </td>
+                    `;
+                });
+            })
+            .catch(function (error) {
+                console.error("Erro ao obter usuários:", error);
+            });
+        }
     </script>
 </body>
 
