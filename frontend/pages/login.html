@@ -1,185 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Usuários</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        :root {
-            --cor-fundo-nav: #322C2B;
-            --cor-texto-nav: #ffffff;
-            --cor-fundo-form: #AF8260;
-            --cor-texto-form: #ffffff;
-            --cor-fundo-footer: #E4C59E;
-            --cor-botao-cadastrar: #322C2B;
-        }
-
-        body {
-            background-color: var(--cor-fundo-footer);
-        }
-
-        .navbar {
-            background-color: var(--cor-fundo-nav);
-        }
-
-        .navbar-dark .navbar-nav .nav-link {
-            color: var(--cor-texto-nav);
-        }
-
-        .profile-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 30px;
-        }
-
-        .profile-pic {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .profile-pic img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .form-container {
-            background-color: var(--cor-fundo-form);
-            padding: 20px;
-            border-radius: 10px;
-            color: var(--cor-texto-form);
-        }
-
-        .footer {
-            background-color: var(--cor-fundo-nav);
-            color: var(--cor-texto-nav);
-            text-align: center;
-            padding: 20px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-
-        .btn-cadastrar {
-            background-color: var(--cor-botao-cadastrar);
-            border-color: var(--cor-botao-cadastrar);
-        }
-
-        .btn-cadastrar:hover {
-            background-color: #5a524f;
-            border-color: #5a524f; 
-        }
-    </style>
+    <title>Login</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
-
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="menuPrincipal.html">TL CONTENT</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCadastro" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Cadastro
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownCadastro">
-                            <a class="dropdown-item" href="cadastroUsuario.html">Cadastro de Usuários</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownConteudos" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Conteúdos
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownConteudos">
-                            <a class="dropdown-item" href="cadastroConteudos">Cadastro de Conteudo</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAtividades" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Atividades
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownAtividades">
-                            <a class="dropdown-item" href="cadastroAtividades">Cadastro de Atividades</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="container">
-        <h1 class="text-center mb-4">Cadastro de Usuários</h1>
-        <div class="profile-container">
-            <div class="profile-pic">
-                <img src="../img/users.png" alt="Foto do Usuário" class="img-thumbnail">
-            </div>
-        </div>
-        <div class="form-container">
-            <form id="userForm">
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <input type="text" id="nome" class="form-control" placeholder="Nome" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <input type="tel" id="telefone" class="form-control" placeholder="Telefone" required>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <input type="email" id="email" class="form-control" placeholder="Email" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <input type="password" id="senha" class="form-control" placeholder="Senha" required>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-primary btn-block btn-cadastrar">Cadastrar Usuário</button>
-            </form>
-        </div>
-        <div class="alert alert-success d-none mt-3" id="successMessage" role="alert">
-            Usuário cadastrado com sucesso!
-        </div>
-        <div id="userList" class="mt-4">
-        </div>
+    <div class="page">
+        <form method="POST" class="formLogin">
+            <h1>Acessar a Plataforma</h1>
+            <p>Digite os seus dados de acesso no campo abaixo.</p>
+            <label for="email">E-mail</label>
+            <input type="email" placeholder="Digite seu e-mail" autofocus="true" />
+            <label for="password">Senha</label>
+            <input type="password" placeholder="Digite seu e-mail" />
+            <a href="/">Esqueci minha senha</a>
+            <input type="submit" value="Acessar" class="btn" />
+        </form>
     </div>
-
-    <footer class="footer">
-        <div class="container">
-            <span>© 2022 TL CONTENT. Todos os direitos reservados.</span>
-        </div>
-    </footer>
-
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <script src="script.js"></script>
-    <script>
-        function clearForm() {
-            document.getElementById("nome").value = "";
-            document.getElementById("telefone").value = "";
-            document.getElementById("email").value = "";
-            document.getElementById("senha").value = "";
-        }
-
-        document.getElementById("userForm").addEventListener("submit", function (event) {
-            event.preventDefault();
-            clearForm();
-
-            document.getElementById("successMessage").classList.remove("d-none");
-        });
-    </script>
+    
 </body>
-
 </html>
