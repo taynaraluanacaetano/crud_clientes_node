@@ -5,7 +5,10 @@ exports.getAllUsers = () => {
 };
 
 exports.createUser = (userData) => {
-  return dbService.createUser(userData);
+  return dbService.createUser(userData)
+    .then(createdUser => {
+      return createdUser;
+    });
 };
 
 exports.deleteUser = (userId) => {
