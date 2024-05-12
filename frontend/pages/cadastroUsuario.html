@@ -1,205 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Usuários</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        :root {
-            --cor-fundo-nav: #322C2B;
-            --cor-texto-nav: #ffffff;
-            --cor-fundo-form: #AF8260;
-            --cor-texto-form: #ffffff;
-            --cor-fundo-footer: #E4C59E;
-            --cor-botao-cadastrar: #322C2B;
-            --cor-texto-profissional: #AF8260;
-            --cor-fundo-texto-profissional: #E4C59E;
-            --fonte-profissional: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: var(--cor-fundo-footer);
-            font-family: var(--fonte-profissional);
-        }
-
-        .navbar {
-            background-color: var(--cor-fundo-nav);
-        }
-
-        .navbar-dark .navbar-nav .nav-link {
-            color: var(--cor-texto-nav);
-        }
-
-        .profile-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 30px;
-        }
-
-        .profile-pic {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .profile-pic img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .form-container {
-            background-color: var(--cor-fundo-form);
-            padding: 20px;
-            border-radius: 10px;
-            color: var(--cor-texto-form);
-        }
-
-        .footer {
-            background-color: var(--cor-fundo-nav);
-            color: var(--cor-texto-nav);
-            text-align: center;
-            padding: 20px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-        
-        .btn-cadastrar {
-            background-color: var(--cor-botao-cadastrar);
-            border-color: var(--cor-botao-cadastrar);
-            font-family: var(--fonte-profissional);
-        }
-
-        .btn-cadastrar:hover {
-            background-color: #5a524f;
-            border-color: #5a524f;
-        }
-
-        .texto-profissional {
-            background-color: var(--cor-fundo-texto-profissional);
-            padding: 10px;
-            border-radius: 5px;
-            color: var(--cor-texto-profissional);
-            font-family: var(--fonte-profissional);
+        .container {
+            margin-top: 50px;
         }
 
         .table {
-            background-color: var(--cor-fundo-form);
-            color: var(--cor-texto-form);
-        }
-
-        .table th,
-        .table td {
-            border-color: var(--cor-texto-nav);
+            background-color: #f8f9fa;
+            color: #212529;
         }
     </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <header>
+        <nav class="menu">
+            <ul>
+                <li><a href="menuPrincipal.html">Home</a></li>
+                <li>
+                    <a href="#">Cadastros</a>
+                    <ul class="submenu">
+                        <li><a href="cadastroUsuario.html">Usuários</a></li>
+                        <li><a href="cadastroConteudo.html">Conteúdos</a></li>
+                        <li><a href="#">Atividades</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Conteúdos Cadastrados</a></li>
+                <li><a href="#">Atividades Cadastradas</a></li>
+                <li><a href="#">Sair</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
         <div class="container">
-            <a class="navbar-brand" href="menuPrincipal.html">TL CONTENT</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCadastro" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Cadastro
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownCadastro">
-                            <a class="dropdown-item" href="cadastroUsuario.html">Cadastro de Usuários</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownConteudos" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Conteúdos
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownConteudos">
-                            <a class="dropdown-item" href="cadastroConteudos">Cadastro de Conteudo</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAtividades" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Atividades
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownAtividades">
-                            <a class="dropdown-item" href="cadastroAtividades">Cadastro de Atividades</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" style="color: #ffffff;">Sair</a>
-                    </li>
-                    
-                </ul>
+            <h1>Cadastro de Usuários</h1>
+
+            <form id="userForm" action="http://localhost:3000/users" method="POST">
+                <div class="form-group">
+                    <label for="name">Nome</label>
+                    <input type="text" id="nome" class="form-control" placeholder="Nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="numberTelephone">Telefone</label>
+                    <input type="tel" id="telefone" class="form-control" placeholder="Telefone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="form-control" placeholder="Email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" class="form-control" placeholder="Senha" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Cadastrar Usuário</button>
+            </form>
+            <div class="alert alert-success mt-3 d-none" id="successMessage" role="alert">
+                Usuário cadastrado com sucesso!
+            </div>
+
+            <div class="table-responsive mt-4">
+                <table class="table table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Telefone</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="userList">
+                    </tbody>
+                </table>
             </div>
         </div>
-    </nav>
-    <div class="container">
-        <h1 class="text-center mb-4">Cadastro de Usuários</h1>
-        <div class="profile-container">
-        </div>
-        <div class="form-container">
-            <form id="userForm" action="http://localhost:3000/users" method="POST">
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <input type="text" id="nome" class="form-control" placeholder="Nome" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <input type="tel" id="telefone" class="form-control" placeholder="Telefone" required>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <input type="email" id="email" class="form-control" placeholder="Email" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <input type="password" id="senha" class="form-control" placeholder="Senha" required>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-primary btn-block btn-cadastrar">Cadastrar Usuário</button>
-            </form>
-        </div>
-        <div class="alert alert-success d-none mt-3" id="successMessage" role="alert">
-            Usuário cadastrado com sucesso!
-        </div>
-        <div class="table-responsive mt-4">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Telefone</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Ações</th>
-                    </tr>
-                </thead>
-                <tbody id="userList">
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <footer class="footer">
-        <div class="container">
-            <span>© 2022 TL CONTENT. Todos os direitos reservados.</span>
-        </div>
-    </footer>
+    </main>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
     <script>
         function clearForm() {
             document.getElementById("nome").value = "";
@@ -221,25 +107,25 @@
                 email: email,
                 senha: senha
             })
-            .then(function (response) {
-                clearForm();
-                document.getElementById("successMessage").classList.remove("d-none");
-                updateUserTable();
-            })
-            .catch(function (error) {
-                console.error("Erro ao cadastrar usuário:", error);
-            });
+                .then(function (response) {
+                    clearForm();
+                    document.getElementById("successMessage").classList.remove("d-none");
+                    updateUserTable();
+                })
+                .catch(function (error) {
+                    console.error("Erro ao cadastrar usuário:", error);
+                });
         });
 
         function updateUserTable() {
             axios.get("http://localhost:3000/users")
-            .then(function (response) {
-                var userList = document.getElementById("userList");
-                userList.innerHTML = "";
+                .then(function (response) {
+                    var userList = document.getElementById("userList");
+                    userList.innerHTML = "";
 
-                response.data.forEach(function(user) {
-                    var newRow = userList.insertRow();
-                    newRow.innerHTML = `
+                    response.data.forEach(function (user) {
+                        var newRow = userList.insertRow();
+                        newRow.innerHTML = `
                         <td>${user.nome}</td>
                         <td>${user.telefone}</td>
                         <td>${user.email}</td>
@@ -248,12 +134,14 @@
                             <button type="button" class="btn btn-sm btn-danger">Excluir</button>
                         </td>
                     `;
+                    });
+                })
+                .catch(function (error) {
+                    console.error("Erro ao obter usuários:", error);
                 });
-            })
-            .catch(function (error) {
-                console.error("Erro ao obter usuários:", error);
-            });
         }
+
+        updateUserTable();
     </script>
 </body>
 
