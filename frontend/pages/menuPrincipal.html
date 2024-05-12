@@ -1,78 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Principal</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        /* Ajustes para o layout */
-        body {
-            background-color: #E4C59E;
-        }
-
-        .navbar {
-            background-color: #322C2B;
-        }
-
-        .navbar-dark .navbar-nav .nav-link {
-            color: #ffffff;
-        }
-
-        .navbar-dark .navbar-brand {
-            color: #ffffff;
-        }
-
-        .navbar-dark .navbar-toggler-icon {
-            border-color: #ffffff;
-        }
-
-        .dropdown-menu {
-            background-color: #AF8260;
-        }
-
-        .dropdown-item {
-            color: #ffffff;
-        }
-
-        .dropdown-item:hover {
-            background-color: #803D3B;
-        }
-    </style>
+    <title>TL Content - Home</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">Minha Aplicação</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Cadastro
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="cadastroUsuario.html">Cadastro de Usuários</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" style="color: #ffffff;">Conteúdos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" style="color: #ffffff;">Atividades</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" style="color: #ffffff;">Sair</a>
-                    </li>
+    <nav class="menu">
+        <ul>
+            <li><a href="menuPrincipal.html">Home</a></li>
+            <li>
+                <a href="#">Cadastros</a>
+                <ul class="submenu">
+                    <li><a href="cadastroUsuario.html">Usuários</a></li>
+                    <li><a href="cadastroConteudo.html">Conteúdos</a></li>
+                    <li><a href="#">Atividades</a></li>
                 </ul>
-            </div>
-        </div>
+            </li>
+            <li><a href="#">Conteúdos Cadastrados</a></li>
+            <li><a href="#">Atividades Cadastradas</a></li>
+            <li><a href="#">Sair</a></li>
+        </ul>
     </nav>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <main>
+        <div class="container">
+            <p class="conteudo-pagina-principal-texto">Bem-vindo à nossa plataforma de aprendizado interativo! Aqui na nossa aplicação, estamos comprometidos em proporcionar uma experiência envolvente para alunos interessados em aprimorar suas habilidades em testes de software.</p>
+            <p class="conteudo-pagina-principal-texto">Nossa aplicação é um ambiente virtual projetado especificamente para facilitar o cadastro de conteúdos e atividades relacionadas aos testes de software. Seja você um iniciante curioso ou um profissional experiente em busca de aprimoramento contínuo, nossa plataforma oferece uma ampla gama de recursos para atender às suas necessidades de aprendizado.</p>
+            <p class="conteudo-pagina-principal-texto">Através do nosso sistema de cadastro de conteúdos, você pode criar e compartilhar informações sobre uma variedade de tópicos relacionados aos testes de software. Desde conceitos fundamentais até técnicas avançadas, você encontrará tudo o que precisa para expandir seu conhecimento e aprofundar sua compreensão nesta área crucial da engenharia de software.</p>    
+            <p class="conteudo-pagina-principal-texto">Além disso, nossa plataforma oferece atividades práticas cuidadosamente elaboradas para que você possa aplicar seus conhecimentos teóricos de forma significativa. Com uma variedade de exercícios e desafios disponíveis, você terá a oportunidade de colocar em prática o que aprendeu e desenvolver suas habilidades práticas em testes de software.</p>    
+            <p class="conteudo-pagina-principal-texto">Nosso objetivo é proporcionar a você uma experiência de aprendizado dinâmica e eficaz, onde você pode explorar, aprender e praticar em seu próprio ritmo. Estamos comprometidos em fornecer recursos de alta qualidade e suporte excepcional para ajudá-lo a alcançar seus objetivos de aprendizado e se destacar na área de testes de software.</p>    
+            <p class="conteudo-pagina-principal-texto">Então, não espere mais! Junte-se a nós hoje e embarque nesta jornada emocionante de descoberta e aprimoramento. Estamos ansiosos para ajudá-lo a alcançar todo o seu potencial como profissional de testes de software!</p>    
+        </div>
+    </main>
+    <script src="script.js"></script>
 </body>
 </html>
