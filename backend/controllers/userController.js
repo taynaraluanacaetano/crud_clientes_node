@@ -35,3 +35,18 @@ exports.deleteUser = (req, res) => {
       res.status(500).json({ error: 'Erro ao excluir usuário' });
     });
 };
+
+exports.getUserById = (req, res) => {
+  const userId = req.params.id; 
+  userService.getUserById(userId)
+    .then(user => {
+      if (!user) {
+        return res.status(404).json({ error: "Usuário não encontrado" });
+      }
+      res.status(200).json(user);
+    })
+    .catch(err => {
+      console.error("Erro ao obter dados do usuário:", err.message);
+      res.status(500).json({ error: "Erro ao obter dados do usuário" });
+    });
+};

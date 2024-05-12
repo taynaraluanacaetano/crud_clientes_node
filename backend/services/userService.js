@@ -14,3 +14,7 @@ exports.createUser = (userData) => {
 exports.deleteUser = (userId) => {
   return dbService.deleteUser(userId);
 };
+
+exports.getUserById = (userId)=>{
+  return dbService.getUserById(userId);
+}
