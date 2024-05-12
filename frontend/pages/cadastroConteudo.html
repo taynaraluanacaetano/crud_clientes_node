@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Conteúdos</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="menu">
+        <ul>
+            <li><a href="menuPrincipal.html">Home</a></li>
+            <li>
+                <a href="#">Cadastros</a>
+                <ul class="submenu">
+                    <li><a href="cadastroUsuario.html">Usuários</a></li>
+                    <li><a href="cadastroConteudo.html">Conteúdos</a></li>
+                    <li><a href="#">Atividades</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Conteúdos Cadastrados</a></li>
+            <li><a href="#">Atividades Cadastradas</a></li>
+            <li><a href="#">Sair</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="container">
+            <h1>Cadastro de Conteúdos - Testes de Software</h1>
+            <form id="contentForm">
+                <div class="form-group">
+                    <label for="title">Título:</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Descrição:</label>
+                    <textarea id="description" name="description" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="category">Tipo de Teste:</label>
+                    <select id="category" name="category" required>
+                        <option value="">Selecione...</option>
+                        <option value="Teste de Unidade">Teste de Unidade</option>
+                        <option value="Teste de Integração">Teste de Integração</option>
+                        <option value="Teste de Aceitação">Teste de Aceitação</option>
+                        <option value="Teste de Performance">Teste de Performance</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="content">Conteúdo:</label>
+                    <textarea id="content" name="content" rows="6" required></textarea>
+                </div>
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
