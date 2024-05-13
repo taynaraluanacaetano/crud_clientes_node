@@ -1,28 +1,189 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #023047;
+            background-color: #3b5249;
+        }
+
+        .menu {
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .menu ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: inline-block;
+        }
+
+        .menu ul li {
+            display: inline-block;
+            position: relative;
+        }
+
+        .menu ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: block;
+        }
+
+        .menu ul li a:hover {
+            background-color: #a5c4b8;
+            border-radius: 10px;
+        }
+
+        .menu ul li ul.submenu {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            padding: 10px;
+            top: 100%;
+            left: 0;
+            width: 200px;
+        }
+
+        .menu ul li:hover ul.submenu {
+            display: block;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #355853;
+            border-radius: 8px;
+            box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+
+        .form-group {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        textarea,
+        select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #dacccc;
+            box-sizing: border-box;
+        }
+
+        a {
+            color: #a5c4b8;
+            text-decoration: none;
+            margin-bottom: 20px;
+            display: block;
+            text-align: right;
+        }
+
+        button[type="submit"] {
+            width: calc(100% - 22px);
+            padding: 12px;
+            background-color: #5e635e;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0b0c0a;
+        }
+
+        .conteudo-pagina-principal-texto {
+            color: #ccc;
+            text-align: justify;
+        }
+    </style>
 </head>
+
 <body>
     <header>
-        
+        <nav class="menu">
+            <ul>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="#">Quem Somos</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
     </header>
-    <div class="page">
-        <form method="POST" class="formLogin">
-            <h1>Acessar a Plataforma</h1>
-            <p>Digite os seus dados de acesso no campo abaixo.</p>
-            <label for="email">E-mail</label>
-            <input type="email" placeholder="Digite seu e-mail" autofocus="true" />
-            <label for="password">Senha</label>
-            <input type="password" placeholder="Digite seu e-mail" />
-            <a href="/">Esqueci minha senha</a>
-            <input type="submit" value="Acessar" class="btn" />
-        </form>
+
+    <main>
+        <div class="page">
+            <form id="loginForm" class="formLogin container">
+                <h1>Acessar a Plataforma</h1>
+                <p>Digite os seus dados de acesso no campo abaixo.</p>
+                <div class="form-group">
+                    <label for="username">Usuário</label>
+                    <input type="text" id="username" placeholder="Digite seu usuário" autofocus="true" />
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" placeholder="Digite sua senha" />
+                </div>
+                <a href="#">Esqueci minha senha</a>
+                <button type="submit" class="btn">Acessar</button>
+            </form>
+        </div>
+    </main>
+
+    <div class="modal fade" id="loginErrorModal" tabindex="-1" role="dialog" aria-labelledby="loginErrorModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginErrorModalLabel">Erro no Login</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Nome de usuário ou senha incorretos.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
     </div>
-    
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../js/login.js"></script>
 </body>
+
 </html>

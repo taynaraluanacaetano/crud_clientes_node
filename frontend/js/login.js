@@ -8,6 +8,6 @@ loginForm.addEventListener('submit', async (event) => {
     if (username === 'admin' && password === 'admin') {
         window.location.href = 'menuPrincipal.html';
     } else {
-        alert('Nome de usuário ou senha incorretos.');
+        $('#loginErrorModal').modal('show');
     }
 });
