@@ -21,22 +21,13 @@
 
 <body>
     <header>
-        <nav class="menu">
-            <ul>
-                <li><a href="menuPrincipal.html">Home</a></li>
-                <li>
-                    <a href="#">Cadastros</a>
-                    <ul class="submenu">
-                        <li><a href="cadastroUsuario.html">Usuários</a></li>
-                        <li><a href="cadastroConteudo.html">Conteúdos</a></li>
-                        <li><a href="#">Atividades</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Conteúdos Cadastrados</a></li>
-                <li><a href="#">Atividades Cadastradas</a></li>
-                <li><a href="#">Sair</a></li>
-            </ul>
-        </nav>
+        <div id="menu"></div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(function () {
+                $('#menu').load('menu.html');
+            });
+        </script>
     </header>
     <main>
         <div class="container">

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <nav class="menu">
+        <ul>
+            <li><a href="menuPrincipal.html">Home</a></li>
+            <li>
+                <a href="#">Cadastros</a>
+                <ul class="submenu">
+                    <li><a href="cadastroUsuario.html">Usuários</a></li>
+                    <li><a href="cadastroConteudo.html">Conteúdos</a></li>
+                    <li><a href="cadastroAtividades.html">Atividades</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Conteúdos Cadastrados</a></li>
+            <li><a href="#">Atividades Cadastradas</a></li>
+            <li>
+                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#confirmExitModal">
+                    Sair
+                </button>
+            </li>
+        </ul>
+    </nav>
+    <div id="confirmExitModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="confirmExitModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmExitModalLabel">Confirmar Saída</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Tem certeza de que deseja sair?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="confirmExitButton">Sair</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../js/menu.js"></script>
+</body>
+
+</html>
