@@ -6,7 +6,7 @@ loginForm.addEventListener("submit", async (event) => {
   const password = document.getElementById("password").value;
 
   if (username === "admin" && password === "admin") {
-    window.location.href = '/menuPrincipal.html'; // Redirecionamento para a página principal
+    window.location.href = 'menuPrincipal.html'; // Redirecionamento para a página principal
   } else {
     $("#loginErrorModal").modal("show");
   }
