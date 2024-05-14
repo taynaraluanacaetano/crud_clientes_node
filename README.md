@@ -3,7 +3,7 @@
 Este é um projeto WEB que utiliza as seguintes tecnologias:
 - HTML;
 - CSS;
--JAVA SCRIPT;
+- JAVA SCRIPT;
 - NodeJs;
 - Express.
 
