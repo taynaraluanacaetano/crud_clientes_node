@@ -28,4 +28,21 @@ Este é um projeto WEB que utiliza as seguintes tecnologias:
 
     `No diretório do backend execute o seguinte comando: npm install`
 
-## Instalação
+## Utilização
+
+1. Para que você acesse a aplicação do frontEnd, basta acessar a seguinte URL:
+
+    `https://crud-clientes-node.vercel.app/`
+
+2. Para que você consiga utilizar o backend e os cadastros, você vai precisar executar o servidor local, para isso siga os seguintes passos:
+
+- Navegue até a pasta do backend;
+- Execute o seguinte comando:
+
+         `node app.js`
+
+- Pronto, você irá notar que uma mensagem foi apresentada no seu terminal do vsCode, apresentando a porta em que sua aplicação está rodando, com isso agora você poderá utilizar uma base de dados local, a base do projeto. 
+- Abra o postman e execute uma consulta GET por exemplo, utilizando o seguinte CURL:
+
+        `curl --location 'http://localhost:3000/users/'`
+- A resposta esperada deverá ser 200 para a sua listagem. Como será a sua primeira execução, é comum que nenhum registro seja listado.
