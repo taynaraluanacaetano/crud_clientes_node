@@ -29,7 +29,7 @@ app.get("/users", (req, res) => {
 });
 
 app.post("/users", (req, res) => {
-  const { nome, telefone, email, senha } = req.body;
+  const { nome, telefone, email, senha} = req.body;
 
   db.run(
     "INSERT INTO users (nome, telefone, email, senha) VALUES (?, ?, ?, ?)",
@@ -43,7 +43,7 @@ app.post("/users", (req, res) => {
       const userId = this.lastID;
 
       db.get(
-        "SELECT * FROM users WHERE id = ?",
+        "SELECT id, nome, telefone, email FROM users WHERE id = ?",
         [userId],
         (err, row) => {
           if (err) {
@@ -57,6 +57,7 @@ app.post("/users", (req, res) => {
     }
   );
 });
+
 
 app.get('/users/:id', (req, res)=>{
   const userId = req.params.id; 

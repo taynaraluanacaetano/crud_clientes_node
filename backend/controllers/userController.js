@@ -4,7 +4,8 @@ exports.createUser = (req, res) => {
   const userData = req.body;
   userService.createUser(userData)
     .then(createdUser => {
-      const responseBody = { ...req.body, ...createdUser };
+      const { senha, ...userWithoutPassword } = createdUser;
+      const responseBody = { ...req.body, ...userWithoutPassword };
       res.status(201).json(responseBody); 
     })
     .catch(err => {
@@ -12,6 +13,7 @@ exports.createUser = (req, res) => {
       res.status(500).json({ error: 'Erro ao inserir usuário' });
     });
 };
+
 
 exports.getAllUsers = (req, res) => {
   userService.getAllUsers()
