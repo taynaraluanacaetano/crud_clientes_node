@@ -1,119 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
-.fixed-top {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000; 
-  }
-  
 body {
-    font-family: 'Inter', sans-serif;
-    margin: 0;
-    padding: 0;
-    color: #023047;
-    background-color: #3b5249;
-}
-
-.menu {
-    background-color: #333;
-    padding: 10px;
-    text-align: center;
-}
-
-.menu ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: inline-block;
-}
-
-.menu ul li {
-    display: inline-block;
-    position: relative;
-}
-
-.menu ul li a {
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 20px;
-    display: block;
-}
-
-.menu ul li a:hover {
-    background-color: #a5c4b8;
-    border-radius: 10px;
-}
-
-.menu ul li ul.submenu {
-    display: none;
-    position: absolute;
-    background-color: #333;
-    padding: 10px;
-    top: 100%;
-    left: 0;
-    width: 200px;
-}
-
-.menu ul li:hover ul.submenu {
-    display: block;
+    background-color: #4a5c59;
 }
 
 .container {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #355853;
-    border-radius: 8px;
-    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
+    background-color: rgba(182, 197, 186, 0.5);
+    padding: 70px;
+    border-radius: 50px;
+    margin-top: 90px;
 }
 
-h1 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: #fff;
-}
-
-.form-group {
-    width: 100%;
+.conteudo-pagina-principal-texto {
     margin-bottom: 20px;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #fff;
-}
-
-input[type="text"],
-textarea,
-select {
-    width: calc(100% - 22px);
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #dacccc;
-    box-sizing: border-box;
-}
-
-button[type="submit"] {
-    width: calc(100% - 22px);
-    padding: 12px;
-    background-color: #5e635e;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button[type="submit"]:hover {
-    background-color: #0b0c0a; 
-}
-
-.conteudo-pagina-principal-texto{
-    color: #ccc;
-    text-align: justify;
+    color: black
 }
