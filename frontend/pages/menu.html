@@ -10,26 +10,45 @@
 </head>
 
 <body>
-    <nav class="menu">
-        <ul>
-            <li><a href="menuPrincipal.html">Home</a></li>
-            <li>
-                <a href="#">Cadastros</a>
-                <ul class="submenu">
-                    <li><a href="cadastroUsuario.html">Usuários</a></li>
-                    <li><a href="cadastroConteudo.html">Conteúdos</a></li>
-                    <li><a href="cadastroAtividades.html">Atividades</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Conteúdos Cadastrados</a></li>
-            <li><a href="#">Atividades Cadastradas</a></li>
-            <li>
-                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#confirmExitModal">
-                    Sair
-                </button>
-            </li>
-        </ul>
-    </nav>
+    <header>
+        <div class="fixed-top">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light mx-auto"> <!-- Adicionando a classe mx-auto -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto"> <!-- Adicionando a classe mx-auto -->
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Cadastros   
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="cadastroUsuario.html">Cadastrar Usuários</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="cadastroAtividades.html">Cadastrar Atividades</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="cadastroConteudo.html">Cadastrar Conteúdos</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Conteúdos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Atividades</a>
+                        </li>
+                        <li>
+                            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#confirmExitModal">
+                                Sair
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        
+    </header>
+
     <div id="confirmExitModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="confirmExitModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">

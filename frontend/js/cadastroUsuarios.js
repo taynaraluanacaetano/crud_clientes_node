@@ -52,4 +52,15 @@ function updateUserTable() {
         });
 }
 
+function formatarTelefone(telefone) {
+    var digits = telefone.replace(/\D/g, '');
+    return '(' + digits.substring(0, 2) + ') ' + digits.substring(2, 7) + '-' + digits.substring(7, 11);
+}
+
+document.getElementById('telefone').addEventListener('input', function (event) {
+    var telefone = event.target.value;
+
+    event.target.value = formatarTelefone(telefone);
+});
+
 updateUserTable();
