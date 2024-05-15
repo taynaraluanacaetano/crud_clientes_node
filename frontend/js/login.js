@@ -11,3 +11,4 @@ loginForm.addEventListener("submit", async (event) => {
     $("#loginErrorModal").modal("show");
   }
 });
+

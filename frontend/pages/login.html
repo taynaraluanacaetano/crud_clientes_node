@@ -6,158 +6,57 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/login.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 0;
-            color: #023047;
-            background-color: #3b5249;
-        }
 
-        .menu {
-            background-color: #333;
-            padding: 10px;
-            text-align: center;
-        }
-
-        .menu ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            display: inline-block;
-        }
-
-        .menu ul li {
-            display: inline-block;
-            position: relative;
-        }
-
-        .menu ul li a {
-            color: #fff;
-            text-decoration: none;
-            padding: 10px 20px;
-            display: block;
-        }
-
-        .menu ul li a:hover {
-            background-color: #a5c4b8;
-            border-radius: 10px;
-        }
-
-        .menu ul li ul.submenu {
-            display: none;
-            position: absolute;
-            background-color: #333;
-            padding: 10px;
-            top: 100%;
-            left: 0;
-            width: 200px;
-        }
-
-        .menu ul li:hover ul.submenu {
-            display: block;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #355853;
-            border-radius: 8px;
-            box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #fff;
-        }
-
-        .form-group {
-            width: 100%;
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #fff;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="password"],
-        textarea,
-        select {
-            width: calc(100% - 22px);
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #dacccc;
-            box-sizing: border-box;
-        }
-
-        a {
-            color: #a5c4b8;
-            text-decoration: none;
-            margin-bottom: 20px;
-            display: block;
-            text-align: right;
-        }
-
-        button[type="submit"] {
-            width: calc(100% - 22px);
-            padding: 12px;
-            background-color: #5e635e;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        button[type="submit"]:hover {
-            background-color: #0b0c0a;
-        }
-
-        .conteudo-pagina-principal-texto {
-            color: #ccc;
-            text-align: justify;
-        }
-    </style>
 </head>
 
 <body>
     <header>
-        <nav class="menu">
-            <ul>
-                <li><a href="quemSomos.html">Quem Somos</a></li>
-                <li><a href="contato.html">Contato</a></li>
+        <div class="fixed-top">
+            <ul class="nav justify-content-center p-3 mb-2 bg-white text-dark ">
+                <li class="nav-item">
+                    <a class="nav-link" href="quemSomos.html">Quem Somos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contato.html">Contato</a>
+                </li>
             </ul>
-        </nav>
+        </div>
     </header>
 
     <main>
-        <div class="page">
-            <form id="loginForm" class="formLogin container">
-                <h1>Acessar a Plataforma</h1>
-                <p>Digite os seus dados de acesso no campo abaixo.</p>
-                <div class="form-group">
-                    <label for="username">Usuário</label>
-                    <input type="text" id="username" placeholder="Digite seu usuário" autofocus="true" />
+        <section class="vh-100" style="background-color: #658b84;">
+            <div class="container py-5 h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-md-8 col-lg-6">
+                        <div class="card" style="border-radius: 1rem;">
+                            <div class="card-body p-4 p-lg-5 text-black">
+                                <form id="loginForm">
+                                    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Entre com sua conta</h5>
+
+                                    <div class="form-outline mb-4">
+                                        <input type="username" id="username" class="form-control form-control-lg" required/>
+                                        <label class="form-label" for="login">Login</label>
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <input type="password" id="password" class="form-control form-control-lg" required/>
+                                        <label class="form-label" for="password">Senha</label>
+                                    </div>
+
+                                    <div class="pt-1 mb-4">
+                                        <button class="btn btn-dark btn-lg btn-block acessar" type="submit">Login</button>
+                                    </div>
+
+                                    <a class="small text-muted" href="novaSenha.html">Esqueceu a senha?</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="password">Senha</label>
-                    <input type="password" id="password" placeholder="Digite sua senha" />
-                </div>
-                <a href="novaSenha.html">Esqueci minha senha</a>
-                <button type="submit" class="btn">Acessar</button>
-            </form>
-        </div>
+            </div>
+        </section>
     </main>
 
     <div class="modal fade" id="loginErrorModal" tabindex="-1" role="dialog" aria-labelledby="loginErrorModalLabel"
