@@ -7,6 +7,8 @@
     <title>Cadastro de Usuários</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.6/inputmask.min.js"></script>
+
     <style>
         .container {
             margin-top: 50px;
@@ -40,7 +42,8 @@
                 </div>
                 <div class="form-group">
                     <label for="numberTelephone">Telefone</label>
-                    <input type="tel" id="telefone" class="form-control" placeholder="Telefone" required>
+                    <input type="tel" id="telefone" class="form-control" placeholder="Telefone" name="telefone"
+                        required>
                 </div>
 
                 <div class="form-group">
@@ -78,6 +81,9 @@
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="../js/cadastroUsuarios.js"> </script>
+    <script>
+    </script>
+
 </body>
 
 </html>
