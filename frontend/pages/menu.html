@@ -12,16 +12,16 @@
 <body>
     <header>
         <div class="fixed-top">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light mx-auto"> <!-- Adicionando a classe mx-auto -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light mx-auto">
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mx-auto"> <!-- Adicionando a classe mx-auto -->
+                    <ul class="navbar-nav mx-auto">
                         <li class="nav-item active">
                             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Cadastros   
+                                Cadastros
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="cadastroUsuario.html">Cadastrar Usuários</a>
@@ -38,7 +38,8 @@
                             <a class="nav-link" href="#">Atividades</a>
                         </li>
                         <li>
-                            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#confirmExitModal">
+                            <button type="button" class="btn btn-link" data-toggle="modal"
+                                data-target="#confirmExitModal">
                                 Sair
                             </button>
                         </li>
@@ -46,7 +47,7 @@
                 </div>
             </nav>
         </div>
-        
+
     </header>
 
     <div id="confirmExitModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="confirmExitModalLabel"
@@ -69,6 +70,27 @@
             </div>
         </div>
     </div>
+
+    <div id="emailInUseModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="emailInUseModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="emailInUseModalLabel">Erro ao Cadastrar Usuário</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    O e-mail fornecido já está em uso. Por favor, insira um e-mail diferente.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

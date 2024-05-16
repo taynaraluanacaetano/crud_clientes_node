@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,13 +19,18 @@
         }
     </style>
 </head>
+
 <body>
     <header>
         <div id="menu"></div>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
         <script>
             $(function () {
                 $('#menu').load('menu.html');
+            });
+            $(document).on('click', '.btn-edit', function () {
+                var userId = $(this).data('user-id');
             });
         </script>
     </header>
@@ -54,10 +60,27 @@
                     <input type="password" id="senha" class="form-control" placeholder="Senha" required>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Cadastrar Usuário</button>
+                <button type="submit" class="btn btn-primary" id="submitBtn">Cadastrar Usuário</button>
             </form>
-            <div class="alert alert-success mt-3 d-none" id="successMessage" role="alert">
-                Usuário cadastrado com sucesso!
+
+            <div id="successModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="successModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="successModalLabel">Sucesso!</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Usuário cadastrado com sucesso!
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="table-responsive mt-4">
@@ -77,6 +100,7 @@
         </div>
     </main>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="../js/cadastroUsuarios.js"> </script>
+    <script src="../js/cadastroUsuarios.js"></script>
 </body>
+
 </html>
