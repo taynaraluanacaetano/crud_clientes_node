@@ -121,7 +121,10 @@ function deleteUser(userId) {
     .delete(`http://localhost:3000/users/${userId}`)
     .then(function (response) {
       console.log("Usuário excluído com sucesso!");
-      $("#confirmDeleteModal").modal("hide");
+      $("#confirmDeleteModal .modal-body").html(
+        "Usuário removido com sucesso!"
+      );
+      $("#confirmDeleteModal .btn-ok").show();
       updateUserTable();
     })
     .catch(function (error) {
@@ -129,9 +132,13 @@ function deleteUser(userId) {
     });
 }
 
+$("#confirmDeleteModal .btn-ok").on("click", function () {
+  $("#confirmDeleteModal").modal("hide");
+});
+
 updateUserTable();
 
-$("#confirmDeleteBtn").on("click", function () {
+$(document).on("click", "#confirmDeleteBtn", function () {
   var userId = $(this).data("user-id");
   deleteUser(userId);
 });
