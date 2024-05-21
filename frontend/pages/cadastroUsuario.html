@@ -33,6 +33,13 @@
                 var userId = $(this).data('user-id');
             });
         </script>
+        <!-- Incluir o script para a máscara de telefone -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#telefone').mask('(00) 00000-0000');
+            });
+        </script>
     </header>
     <main>
         <div class="container">
