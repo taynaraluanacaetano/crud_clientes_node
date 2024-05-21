@@ -12,9 +12,13 @@
     <header>
         <div id="menu"></div>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
         <script>
             $(function () {
                 $('#menu').load('menu.html');
+            });
+            $(document).on('click', '.btn-edit', function () {
+                var userId = $(this).data('user-id');
             });
         </script>
     </header>
