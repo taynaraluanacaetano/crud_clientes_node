@@ -94,14 +94,21 @@ function updateUserTable() {
       response.data.forEach(function (user) {
         var newRow = userList.insertRow();
         newRow.innerHTML = `
-                    <td>${user.nome}</td>
-                    <td>${user.telefone}</td>
-                    <td>${user.email}</td>
-                    <td>
-                        <button type="button" class="btn btn-sm btn-primary btn-edit" data-user-id="${user.id}">Editar</button>
-                        <button type="button" class="btn btn-sm btn-danger">Excluir</button>
-                    </td>
-                `;
+                  <td>${user.nome}</td>
+                  <td>${user.telefone}</td>
+                  <td>${user.email}</td>
+                  <td>
+                      <button type="button" class="btn btn-sm btn-primary btn-edit" data-user-id="${user.id}">Editar</button>
+                      <button type="button" class="btn btn-sm btn-danger btn-delete" data-user-id="${user.id}">Excluir</button>
+                  </td>
+              `;
+      });
+    })
+    .then(function () {
+      $(document).on("click", ".btn-delete", function () {
+        var userId = $(this).data("user-id");
+        $("#confirmDeleteModal").modal("show");
+        $("#confirmDeleteBtn").data("user-id", userId);
       });
     })
     .catch(function (error) {
@@ -109,4 +116,22 @@ function updateUserTable() {
     });
 }
 
+function deleteUser(userId) {
+  axios
+    .delete(`http://localhost:3000/users/${userId}`)
+    .then(function (response) {
+      console.log("Usuário excluído com sucesso!");
+      $("#confirmDeleteModal").modal("hide");
+      updateUserTable();
+    })
+    .catch(function (error) {
+      console.error("Erro ao excluir usuário:", error);
+    });
+}
+
 updateUserTable();
+
+$("#confirmDeleteBtn").on("click", function () {
+  var userId = $(this).data("user-id");
+  deleteUser(userId);
+});
