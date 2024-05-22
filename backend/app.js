@@ -18,13 +18,19 @@ db.run(`CREATE TABLE IF NOT EXISTS users (
   senha TEXT
 )`);
 
+const removePasswordField = (user) => {
+  const { senha, ...userWithoutPassword } = user;
+  return userWithoutPassword;
+};
+
 app.get("/users", (req, res) => {
-  db.all("SELECT * FROM users", (err, rows) => {
+  db.all("SELECT id, nome, telefone, email FROM users", (err, rows) => { 
     if (err) {
       console.error("Erro ao carregar usuários:", err.message);
       return res.status(500).json({ error: "Erro ao carregar usuários" });
     }
-    res.json(rows);
+    const usersWithoutPasswords = rows.map(removePasswordField);
+    res.json(usersWithoutPasswords);
   });
 });
 
@@ -97,7 +103,7 @@ app.post("/users", (req, res) => {
 
 app.get("/users/:id", (req, res) => {
   const userId = req.params.id;
-  db.get("SELECT * FROM users WHERE id = ?", [userId], (err, row) => {
+  db.get("SELECT id, nome, telefone, email FROM users WHERE id = ?", [userId], (err, row) => { // Changed query to exclude password field
     if (err) {
       console.error("Erro ao obter dados do usuário:", err.message);
       return res.status(500).json({ error: "Erro ao obter dados do usuário" });
@@ -127,10 +133,6 @@ app.delete("/users/:id", (req, res) => {
       res.json({ message: "Usuário excluído com sucesso" });
     });
   });
-});
-
-app.listen(port, () => {
-  console.log(`Servidor rodando em http://localhost:${port}`);
 });
 
 app.put("/users/:id", (req, res) => {
@@ -166,7 +168,7 @@ app.put("/users/:id", (req, res) => {
         return res.status(500).json({ error: "Erro ao atualizar usuário" });
       }
 
-      db.get("SELECT * FROM users WHERE id = ?", [userId], (err, row) => {
+      db.get("SELECT id, nome, telefone, email FROM users WHERE id = ?", [userId], (err, row) => {
         if (err) {
           console.error(
             "Erro ao obter dados do usuário atualizado:",
@@ -185,6 +187,10 @@ app.put("/users/:id", (req, res) => {
       });
     }
   );
+});
+
+app.listen(port, () => {
+  console.log(`Servidor rodando em http://localhost:${port}`);
 });
 
 module.exports = app;
