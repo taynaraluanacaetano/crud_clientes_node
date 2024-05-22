@@ -1,25 +1,90 @@
-document.getElementById("activityForm").addEventListener("submit", function (event) {
-    event.preventDefault();
-    var title = document.getElementById("title").value;
-    var description = document.getElementById("description").value;
-    var question = document.getElementById("question").value;
+document.addEventListener("DOMContentLoaded", function() {
+    function clearForm() {
+        document.getElementById("titulo").value = "";
+        document.getElementById("descricao").value = "";
+    }
 
-    axios.post("http://localhost:3000/activities", {
-        title: title,
-        description: description,
-        question: question
-    })
-        .then(function (response) {
-            clearForm();
-            document.getElementById("successMessage").classList.remove("d-none");
-        })
-        .catch(function (error) {
-            console.error("Erro ao cadastrar atividade:", error);
-        });
+    document.getElementById("activityForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        var titulo = document.getElementById("titulo").value;
+        var descricao = document.getElementById("descricao").value;
+        var activityId = document.getElementById("submitBtn").getAttribute("data-activity-id");
+
+        if (activityId) {
+            axios
+                .put(`http://localhost:3000/activities/${activityId}`, {
+                    titulo: titulo,
+                    descricao: descricao,
+                })
+                .then(function(response) {
+                    clearForm();
+                    console.log("Atividade atualizada com sucesso!");
+                    $("#successModal").modal("show");
+                    updateActivityTable();
+                    document.getElementById("submitBtn").innerText = "Cadastrar Atividade";
+                    document.getElementById("activityForm").reset();
+                })
+                .catch(function(error) {
+                    console.error("Erro ao atualizar atividade:", error);
+                });
+        } else {
+            axios
+                .post("http://localhost:3000/activities", {
+                    titulo: titulo,
+                    descricao: descricao,
+                })
+                .then(function(response) {
+                    clearForm();
+                    console.log("Cadastro bem-sucedido!");
+                    $("#successModal").modal("show");
+                    updateActivityTable();
+                })
+                .catch(function(error) {
+                    console.error("Erro ao cadastrar atividade:", error);
+                });
+        }
+    });
+
+    $(document).on("click", ".btn-edit", function() {
+        var activityId = $(this).data("activity-id");
+        axios
+            .get(`http://localhost:3000/activities/${activityId}`)
+            .then(function(response) {
+                document.getElementById("titulo").value = response.data.titulo;
+                document.getElementById("descricao").value = response.data.descricao;
+                document.getElementById("submitBtn").innerText = "Salvar Alterações";
+                document.getElementById("submitBtn").setAttribute("data-activity-id", activityId);
+            })
+            .catch(function(error) {
+                console.error("Erro ao obter detalhes da atividade para edição:", error);
+            });
+    });
+
+    function updateActivityTable() {
+        axios
+            .get("http://localhost:3000/activities")
+            .then(function(response) {
+                var activityList = response.data;
+                var activityTable = document.getElementById("activiviList");
+                activityTable.innerHTML = "";
+
+                activityList.forEach(function(activity) {
+                    var newRow = activityTable.insertRow();
+                    newRow.innerHTML = `
+                        <td>${activity.titulo}</td>
+                        <td>${activity.descricao}</td>
+                        <td>${activity.dataCadastro ? activity.dataCadastro : "Data não disponível"}</td>
+                        <td>${activity.cadastradoPor ? activity.cadastradoPor : "Indisponível"}</td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-primary btn-action btn-edit" data-activity-id="${activity.id}">Editar</button>
+                            <button type="button" class="btn btn-sm btn-danger btn-action btn-delete" data-activity-id="${activity.id}">Excluir</button>
+                        </td>
+                    `;
+                });
+            })
+            .catch(function(error) {
+                console.error("Erro ao obter atividades:", error);
+            });
+    }
+    updateActivityTable();
 });
-
-function clearForm() {
-    document.getElementById("title").value = "";
-    document.getElementById("description").value = "";
-    document.getElementById("question").value = "";
-}
