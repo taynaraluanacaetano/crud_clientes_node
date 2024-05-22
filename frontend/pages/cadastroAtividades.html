@@ -5,8 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Atividades</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
@@ -20,49 +18,69 @@
                 $('#menu').load('menu.html');
             });
             $(document).on('click', '.btn-edit', function () {
-                var userId = $(this).data('user-id');
+                currentActivityId = $(this).data('activity-id');
             });
         </script>
     </header>
-
-    <main>
-        <div class="container">
-            <h1>Cadastro de Atividades</h1>
-
-            <form id="activityForm" action="http://localhost:3000/activities" method="POST">
-                <div class="form-group">
-                    <label for="title">Título da Atividade</label>
-                    <input type="text" id="title" class="form-control" placeholder="Título da Atividade" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="description">Descrição</label>
-                    <textarea id="description" class="form-control" rows="4" placeholder="Descrição da Atividade"
-                        required></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="question">Pergunta</label>
-                    <textarea id="question" class="form-control" rows="4" placeholder="Digite a pergunta"
-                        required></textarea>
-                </div>
-
-                <button type="submit" class="btn btn-primary">Cadastrar Atividade</button>
-            </form>
-            <div class="alert alert-success mt-3 d-none" id="successMessage" role="alert">
-                Atividade cadastrada com sucesso!
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                Cadastro de Atividades
+            </div>
+            <div class="card-body">
+                <form id="activityForm" action="http://localhost:3000/activities" method="POST">
+                    <div class="form-group">
+                        <label for="titulo">Título da Atividade</label>
+                        <input type="text" id="titulo" class="form-control" placeholder="Título da Atividade" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="descricao">Descrição</label>
+                        <textarea id="descricao" class="form-control" rows="4" placeholder="Descrição da Atividade"
+                            required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="submitBtn">Cadastrar Atividade</button>
+                </form>
             </div>
         </div>
-    </main>
+
+        <div id="successModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="successModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="successModalLabel">Sucesso!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Atividade cadastrada com sucesso!
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-responsive mt-4">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Título</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Data do Cadastro</th>
+                        <th scope="col">Cadastrado Por</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="activiviList">
+                </tbody>
+            </table>
+        </div>
+    </div>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-
-    <script>
-        document.getElementById("confirmExitButton").addEventListener("click", function () {
-            window.location.href = "login.html";
-        });
-    </script>
     <script src="../js/cadastroAtividades.js"></script>
 </body>
 
