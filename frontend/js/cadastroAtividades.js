@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   
     $("#confirmDeleteModal .btn-ok").on("click", function () {
-      $("#successModal").modal("hide");
+      $("#confirmDeleteModal").modal("hide");
     });
   cd
     updateActivityTable();
