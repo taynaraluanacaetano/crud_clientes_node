@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
           $("#confirmDeleteModal .modal-body").html(
             "Atividade excluída com sucesso!"
           );
-          $("#confirmDeleteModal .btn-ok").show();
+          $("#successModal").modal("show");
           updateActivityTable(); 
         })
         .catch(function (error) {
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   
     $("#confirmDeleteModal .btn-ok").on("click", function () {
-      $("#confirmDeleteModal").modal("hide");
+      $("#successModal").modal("hide");
     });
   
     updateActivityTable();
