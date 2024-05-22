@@ -13,8 +13,10 @@ db.serialize(() => {
 
   db.run(`CREATE TABLE IF NOT EXISTS activities (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    title TEXT,
-    description TEXT
+    titulo TEXT,
+    descricao TEXT,
+    dataCadastro TEXT,
+    cadastradoPor TEXT
   )`);
 });
 

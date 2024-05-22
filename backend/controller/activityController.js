@@ -23,4 +23,15 @@ exports.createActivity = (req, res) => {
     });
 };
 
+exports.deleteActivity = (req, res) => {
+  const activityData = req.params.id;
+  activityService.deleteActivity(activityData)
+    .then(() => {
+      res.status(204).end();
+    })
+    .catch(err => {
+      console.error('Erro ao excluir atividade:', err.message);
+      res.status(500).json({ error: 'Erro ao excluir atividade' });
+    });
+};
 
