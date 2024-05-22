@@ -98,6 +98,9 @@ exports.updateUser = (req, res) => {
       res.status(200).json(updatedUser);
     })
     .catch(err => {
+      if (err.message === "Usuário não encontrado") {
+        return res.status(404).json({ error: err.message });
+      }
       console.error('Erro ao atualizar usuário:', err.message);
       res.status(500).json({ error: 'Erro ao atualizar usuário' });
     });
