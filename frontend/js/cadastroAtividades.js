@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
           $("#confirmDeleteModal .modal-body").html(
             "Atividade excluída com sucesso!"
           );
-          $("#successModal").modal("show");
+          $("#successModalRemoved").modal("show");
           updateActivityTable(); 
         })
         .catch(function (error) {
@@ -120,10 +120,10 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
   
-    $("#confirmDeleteModal .btn-ok").on("click", function () {
-      $("#confirmDeleteModal").modal("hide");
+    $("#successModalRemoved .btn-ok").on("click", function () {
+      $("#successModalRemoved").modal("hide");
     });
-  cd
+  
     updateActivityTable();
   
     $(document).on("click", "#confirmDeleteBtn", function () {
