@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
     $("#confirmDeleteModal .btn-ok").on("click", function () {
       $("#successModal").modal("hide");
     });
-  
+  cd
     updateActivityTable();
   
     $(document).on("click", "#confirmDeleteBtn", function () {
