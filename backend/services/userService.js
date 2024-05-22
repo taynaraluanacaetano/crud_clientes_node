@@ -1,24 +1,21 @@
-const dbService = require('./databaseService');
-
-exports.getAllUsers = () => {
-  return dbService.getAllUsers();
-};
+const User = require('../models/User');
 
 exports.createUser = (userData) => {
-  return dbService.createUser(userData)
-    .then(createdUser => {
-      return createdUser;
-    });
+  return User.create(userData);
+};
+
+exports.getAllUsers = () => {
+  return User.find();
 };
 
 exports.deleteUser = (userId) => {
-  return dbService.deleteUser(userId);
+  return User.findByIdAndDelete(userId);
 };
 
-exports.getUserById = (userId)=>{
-  return dbService.getUserById(userId);
-}
+exports.getUserById = (userId) => {
+  return User.findById(userId);
+};
 
-exports.updateUserById = (userId, userData) => {
-  return dbService.updateUserById(userId, userData);
+exports.updateUser = (userId, userData) => {
+  return User.findByIdAndUpdate(userId, userData, { new: true });
 };
