@@ -12,11 +12,11 @@ exports.getAllActivities = () => {
 };
 
 exports.createActivity = (activityData) => {
-  const { title, description, userId } = activityData;
+  const { title, description } = activityData;
   return new Promise((resolve, reject) => {
     db.run(
-      "INSERT INTO activities (title, description, userId) VALUES (?, ?, ?)",
-      [title, description, userId],
+      "INSERT INTO activities (title, description) VALUES (?, ?)",
+      [title, description],
       function (err) {
         if (err) {
           return reject(err);
@@ -31,4 +31,6 @@ exports.createActivity = (activityData) => {
     );
   });
 };
+
+
 
