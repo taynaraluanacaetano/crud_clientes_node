@@ -1,21 +1,25 @@
-const User = require('../models/User');
-
-exports.createUser = (userData) => {
-  return User.create(userData);
-};
+const userModel = require('../model/userModel');
 
 exports.getAllUsers = () => {
-  return User.find();
+  return userModel.getAllUsers();
+};
+
+exports.createUser = async (userData) => {
+  const existingUser = await userModel.checkEmailExists(userData.email);
+  if (existingUser) {
+    throw new Error("E-mail já está em uso");
+  }
+  return userModel.createUser(userData);
 };
 
 exports.deleteUser = (userId) => {
-  return User.findByIdAndDelete(userId);
+  return userModel.deleteUser(userId);
 };
 
 exports.getUserById = (userId) => {
-  return User.findById(userId);
+  return userModel.getUserById(userId);
 };
 
 exports.updateUser = (userId, userData) => {
-  return User.findByIdAndUpdate(userId, userData, { new: true });
+  return userModel.updateUser(userId, userData);
 };
