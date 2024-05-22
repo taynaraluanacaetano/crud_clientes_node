@@ -12,11 +12,11 @@ exports.getAllActivities = () => {
 };
 
 exports.createActivity = (activityData) => {
-  const { title, description } = activityData;
+  const { titulo, descricao, dataCadastro,  } = activityData;
   return new Promise((resolve, reject) => {
     db.run(
-      "INSERT INTO activities (title, description) VALUES (?, ?)",
-      [title, description],
+      "INSERT INTO activities (titulo, descricao, dataCadastro) VALUES (?, ?, DATETIME('now'));",
+      [titulo, descricao,dataCadastro],
       function (err) {
         if (err) {
           return reject(err);
@@ -32,5 +32,14 @@ exports.createActivity = (activityData) => {
   });
 };
 
-
+exports.deleteActivity = (id) => {
+  return new Promise((resolve, reject) => {
+    db.run("DELETE FROM activities WHERE id = ?", [id], function (err) {
+      if (err) {
+        return reject(err);
+      }
+      resolve({ message: "Atividade excluída com sucesso" });
+    });
+  });
+};
 

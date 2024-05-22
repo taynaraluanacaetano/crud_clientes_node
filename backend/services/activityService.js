@@ -8,3 +8,6 @@ exports.createActivity = (activityData) => {
   return activityModel.createActivity(activityData);
 };
 
+exports.deleteActivity = (activityData) => {
+  return activityModel.deleteActivity(activityData);
+};
