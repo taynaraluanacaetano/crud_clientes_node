@@ -97,10 +97,11 @@ function updateUserTable() {
         `;
       });
 
+
       $(document).on("click", ".btn-delete", function () {
         var userId = $(this).data("user-id");
         $("#confirmDeleteModal").modal("show");
-        $("#confirmDeleteBtn").data("user-id", userId);
+        $(".btn-ok").data("user-id", userId); 
       });
     })
     .catch(function (error) {
@@ -121,7 +122,7 @@ function deleteUser(userId) {
     });
 }
 
-$("#confirmDeleteModal .btn-ok").on("click", function () {
+$(document).on("click", ".btn-ok", function () {
   var userId = $(this).data("user-id");
   $("#confirmDeleteModal").modal("hide");
   deleteUser(userId);
