@@ -97,7 +97,6 @@ function updateUserTable() {
         `;
       });
 
-
       $(document).on("click", ".btn-delete", function () {
         var userId = $(this).data("user-id");
         $("#confirmDeleteModal").modal("show");
@@ -114,7 +113,7 @@ function deleteUser(userId) {
     .delete(`http://localhost:3000/users/${userId}`)
     .then(function (response) {
       console.log("Usuário excluído com sucesso!");
-      $("#successModal").modal("show");
+      $("#deleteSuccessModal").modal("show");
       updateUserTable();
     })
     .catch(function (error) {
