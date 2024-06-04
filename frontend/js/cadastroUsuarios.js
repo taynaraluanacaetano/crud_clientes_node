@@ -5,63 +5,59 @@ function clearForm() {
   document.getElementById("senha").value = "";
 }
 
-document
-  .getElementById("userForm")
-  .addEventListener("submit", function (event) {
-    event.preventDefault();
-    var nome = document.getElementById("nome").value;
-    var telefone = document.getElementById("telefone").value;
-    var email = document.getElementById("email").value;
-    var senha = document.getElementById("senha").value;
-    var userId = document
-      .getElementById("submitBtn")
-      .getAttribute("data-user-id");
+document.getElementById("userForm").addEventListener("submit", function (event) {
+  event.preventDefault();
+  var nome = document.getElementById("nome").value;
+  var telefone = document.getElementById("telefone").value;
+  var email = document.getElementById("email").value;
+  var senha = document.getElementById("senha").value;
+  var userId = document.getElementById("submitBtn").getAttribute("data-user-id");
 
-    if (userId) {
-      axios
-        .put(`http://localhost:3000/users/${userId}`, {
-          nome: nome,
-          telefone: telefone,
-          email: email,
-          senha: senha,
-        })
-        .then(function (response) {
-          clearForm();
-          console.log("Usuário atualizado com sucesso!");
-          $("#successModal").modal("show");
-          updateUserTable();
-          document.getElementById("submitBtn").innerText = "Cadastrar Usuário";
-          document.getElementById("userForm").reset();
-        })
-        .catch(function (error) {
-          console.error("Erro ao atualizar usuário:", error);
-        });
-    } else {
-      axios
-        .post("http://localhost:3000/users", {
-          nome: nome,
-          telefone: telefone,
-          email: email,
-          senha: senha,
-        })
-        .then(function (response) {
-          clearForm();
-          console.log("Cadastro bem-sucedido!");
-          $("#successModal").modal("show");
-          updateUserTable();
-        })
-        .catch(function (error) {
-          console.error("Erro ao cadastrar usuário:", error);
-          if (
-            error.response &&
-            error.response.status === 422 &&
-            error.response.data.error === "E-mail já está em uso"
-          ) {
-            $("#emailInUseModal").modal("show");
-          }
-        });
-    }
-  });
+  if (userId) {
+    axios
+      .put(`http://localhost:3000/users/${userId}`, {
+        nome: nome,
+        telefone: telefone,
+        email: email,
+        senha: senha,
+      })
+      .then(function (response) {
+        clearForm();
+        console.log("Usuário atualizado com sucesso!");
+        $("#successModal").modal("show");
+        updateUserTable();
+        document.getElementById("submitBtn").innerText = "Cadastrar Usuário";
+        document.getElementById("userForm").reset();
+      })
+      .catch(function (error) {
+        console.error("Erro ao atualizar usuário:", error);
+      });
+  } else {
+    axios
+      .post("http://localhost:3000/users", {
+        nome: nome,
+        telefone: telefone,
+        email: email,
+        senha: senha,
+      })
+      .then(function (response) {
+        clearForm();
+        console.log("Cadastro bem-sucedido!");
+        $("#successModal").modal("show");
+        updateUserTable();
+      })
+      .catch(function (error) {
+        console.error("Erro ao cadastrar usuário:", error);
+        if (
+          error.response &&
+          error.response.status === 422 &&
+          error.response.data.error === "E-mail já está em uso"
+        ) {
+          $("#emailInUseModal").modal("show");
+        }
+      });
+  }
+});
 
 $(document).on("click", ".btn-edit", function () {
   var userId = $(this).data("user-id");
@@ -91,17 +87,16 @@ function updateUserTable() {
       response.data.forEach(function (user) {
         var newRow = userList.insertRow();
         newRow.innerHTML = `
-                  <td>${user.nome}</td>
-                  <td>${user.telefone}</td>
-                  <td>${user.email}</td>
-                  <td>
-                      <button type="button" class="btn btn-sm btn-primary btn-action btn-edit" data-user-id="${user.id}">Editar</button>
-                      <button type="button" class="btn btn-sm btn-danger btn-action btn-delete" data-user-id="${user.id}">Excluir</button>
-                  </td>
-              `;
+          <td>${user.nome}</td>
+          <td>${user.telefone}</td>
+          <td>${user.email}</td>
+          <td>
+            <button type="button" class="btn btn-sm btn-primary btn-action btn-edit" data-user-id="${user.id}">Editar</button>
+            <button type="button" class="btn btn-sm btn-danger btn-action btn-delete" data-user-id="${user.id}">Excluir</button>
+          </td>
+        `;
       });
-    })
-    .then(function () {
+
       $(document).on("click", ".btn-delete", function () {
         var userId = $(this).data("user-id");
         $("#confirmDeleteModal").modal("show");
@@ -112,14 +107,13 @@ function updateUserTable() {
       console.error("Erro ao obter usuários:", error);
     });
 }
-// Função para excluir o usuário
+
 function deleteUser(userId) {
   axios
     .delete(`http://localhost:3000/users/${userId}`)
     .then(function (response) {
       console.log("Usuário excluído com sucesso!");
       $("#successModal").modal("show");
-
       updateUserTable();
     })
     .catch(function (error) {
@@ -127,23 +121,12 @@ function deleteUser(userId) {
     });
 }
 
-// Evento de clique no botão de confirmação dentro do modal de confirmação
 $("#confirmDeleteModal .btn-ok").on("click", function () {
   var userId = $(this).data("user-id");
   $("#confirmDeleteModal").modal("hide");
   deleteUser(userId);
 });
 
-// Exemplo de como você pode abrir o modal de confirmação e definir o userId
-$(document).on("click", "#confirmDeleteBtn", function () {
-  var userId = $(this).data("user-id");
-  $("#confirmDeleteModal .btn-ok").data("user-id", userId);
-  $("#confirmDeleteModal").modal("show");
+$(document).ready(function () {
+  updateUserTable();
 });
-
-// Função fictícia para atualizar a tabela de usuários
-function updateUserTable() {
-  // Atualize sua tabela de usuários aqui
-  console.log("Tabela de usuários atualizada");
-}
-
