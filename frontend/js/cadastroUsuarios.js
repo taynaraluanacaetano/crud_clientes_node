@@ -118,10 +118,8 @@ function deleteUser(userId) {
     .delete(`http://localhost:3000/users/${userId}`)
     .then(function (response) {
       console.log("Usuário excluído com sucesso!");
-      $("#confirmDeleteModal .modal-body").html(
-        "Usuário removido com sucesso!"
-      );
-      $("#confirmDeleteModal .btn-ok").show();
+      $("#successModal").modal("show");
+
       updateUserTable();
     })
     .catch(function (error) {
