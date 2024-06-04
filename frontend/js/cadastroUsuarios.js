@@ -5,63 +5,59 @@ function clearForm() {
   document.getElementById("senha").value = "";
 }
 
-document
-  .getElementById("userForm")
-  .addEventListener("submit", function (event) {
-    event.preventDefault();
-    var nome = document.getElementById("nome").value;
-    var telefone = document.getElementById("telefone").value;
-    var email = document.getElementById("email").value;
-    var senha = document.getElementById("senha").value;
-    var userId = document
-      .getElementById("submitBtn")
-      .getAttribute("data-user-id");
+document.getElementById("userForm").addEventListener("submit", function (event) {
+  event.preventDefault();
+  var nome = document.getElementById("nome").value;
+  var telefone = document.getElementById("telefone").value;
+  var email = document.getElementById("email").value;
+  var senha = document.getElementById("senha").value;
+  var userId = document.getElementById("submitBtn").getAttribute("data-user-id");
 
-    if (userId) {
-      axios
-        .put(`http://localhost:3000/users/${userId}`, {
-          nome: nome,
-          telefone: telefone,
-          email: email,
-          senha: senha,
-        })
-        .then(function (response) {
-          clearForm();
-          console.log("Usuário atualizado com sucesso!");
-          $("#successModal").modal("show");
-          updateUserTable();
-          document.getElementById("submitBtn").innerText = "Cadastrar Usuário";
-          document.getElementById("userForm").reset();
-        })
-        .catch(function (error) {
-          console.error("Erro ao atualizar usuário:", error);
-        });
-    } else {
-      axios
-        .post("http://localhost:3000/users", {
-          nome: nome,
-          telefone: telefone,
-          email: email,
-          senha: senha,
-        })
-        .then(function (response) {
-          clearForm();
-          console.log("Cadastro bem-sucedido!");
-          $("#successModal").modal("show");
-          updateUserTable();
-        })
-        .catch(function (error) {
-          console.error("Erro ao cadastrar usuário:", error);
-          if (
-            error.response &&
-            error.response.status === 422 &&
-            error.response.data.error === "E-mail já está em uso"
-          ) {
-            $("#emailInUseModal").modal("show");
-          }
-        });
-    }
-  });
+  if (userId) {
+    axios
+      .put(`http://localhost:3000/users/${userId}`, {
+        nome: nome,
+        telefone: telefone,
+        email: email,
+        senha: senha,
+      })
+      .then(function (response) {
+        clearForm();
+        console.log("Usuário atualizado com sucesso!");
+        $("#successModal").modal("show");
+        updateUserTable();
+        document.getElementById("submitBtn").innerText = "Cadastrar Usuário";
+        document.getElementById("userForm").reset();
+      })
+      .catch(function (error) {
+        console.error("Erro ao atualizar usuário:", error);
+      });
+  } else {
+    axios
+      .post("http://localhost:3000/users", {
+        nome: nome,
+        telefone: telefone,
+        email: email,
+        senha: senha,
+      })
+      .then(function (response) {
+        clearForm();
+        console.log("Cadastro bem-sucedido!");
+        $("#successModal").modal("show");
+        updateUserTable();
+      })
+      .catch(function (error) {
+        console.error("Erro ao cadastrar usuário:", error);
+        if (
+          error.response &&
+          error.response.status === 422 &&
+          error.response.data.error === "E-mail já está em uso"
+        ) {
+          $("#emailInUseModal").modal("show");
+        }
+      });
+  }
+});
 
 $(document).on("click", ".btn-edit", function () {
   var userId = $(this).data("user-id");
@@ -117,6 +113,7 @@ function deleteUser(userId) {
     .delete(`http://localhost:3000/users/${userId}`)
     .then(function (response) {
       console.log("Usuário excluído com sucesso!");
+      $("#confirmDeleteModal").modal("hide");
       $("#deleteSuccessModal").modal("show");
       updateUserTable();
     })
@@ -127,7 +124,6 @@ function deleteUser(userId) {
 
 $(document).on("click", ".btn-ok", function () {
   var userId = $(this).data("user-id");
-  $("#confirmDeleteModal").modal("hide");
   deleteUser(userId);
 });
 
