@@ -112,7 +112,7 @@ function updateUserTable() {
       console.error("Erro ao obter usuários:", error);
     });
 }
-
+// Função para excluir o usuário
 function deleteUser(userId) {
   axios
     .delete(`http://localhost:3000/users/${userId}`)
@@ -127,13 +127,23 @@ function deleteUser(userId) {
     });
 }
 
+// Evento de clique no botão de confirmação dentro do modal de confirmação
 $("#confirmDeleteModal .btn-ok").on("click", function () {
-  $("#confirmDeleteModal").modal("hide");
-});
-
-updateUserTable();
-
-$(document).on("click", "#confirmDeleteBtn", function () {
   var userId = $(this).data("user-id");
+  $("#confirmDeleteModal").modal("hide");
   deleteUser(userId);
 });
+
+// Exemplo de como você pode abrir o modal de confirmação e definir o userId
+$(document).on("click", "#confirmDeleteBtn", function () {
+  var userId = $(this).data("user-id");
+  $("#confirmDeleteModal .btn-ok").data("user-id", userId);
+  $("#confirmDeleteModal").modal("show");
+});
+
+// Função fictícia para atualizar a tabela de usuários
+function updateUserTable() {
+  // Atualize sua tabela de usuários aqui
+  console.log("Tabela de usuários atualizada");
+}
+
