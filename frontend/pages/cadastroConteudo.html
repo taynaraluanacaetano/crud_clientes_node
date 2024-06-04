@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Conteúdos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
@@ -12,42 +13,77 @@
     <header>
         <div id="menu"></div>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
         <script>
             $(function () {
                 $('#menu').load('menu.html');
+            });
+            $(document).on('click', '.btn-edit', function () {
+                currentActivityId = $(this).data('activity-id');
             });
         </script>
     </header>
 
     <main>
         <div class="container">
-            <h1>Cadastro de Conteúdos - Testes de Software</h1>
-            <form id="contentForm">
-                <div class="form-group">
-                    <label for="title">Título:</label>
-                    <input type="text" id="title" name="title" required>
+            <div class="card">
+                <div class="card-header">
+                    Cadastro de Conteúdos - Testes de Software
                 </div>
-                <div class="form-group">
-                    <label for="description">Descrição:</label>
-                    <textarea id="description" name="description" rows="4" required></textarea>
+                <div class="card-body">
+                    <form id="contentForm">
+                        <div class="form-group">
+                            <label for="title">Título:</label>
+                            <input type="text" id="title" name="title" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Descrição:</label>
+                            <textarea id="description" name="description" rows="4" class="form-control"
+                                required></textarea>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <select class="custom-select" id="inputGroupSelect02" required>
+                                <option selected></option>
+                                <option value="1">Teste de Unidade</option>
+                                <option value="2">Teste de Integração</option>
+                                <option value="3">Teste de Aceitação</option>
+                                <option value="3">Teste de Performance</option>
+                            </select>
+                            <div class="input-group-append">
+                                <label class="input-group-text" for="inputGroupSelect02">Tipos de Testes</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="content">Conteúdo:</label>
+                            <textarea id="content" name="content" rows="6" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label for="category">Tipo de Teste:</label>
-                    <select id="category" name="category" required>
-                        <option value="">Selecione...</option>
-                        <option value="Teste de Unidade">Teste de Unidade</option>
-                        <option value="Teste de Integração">Teste de Integração</option>
-                        <option value="Teste de Aceitação">Teste de Aceitação</option>
-                        <option value="Teste de Performance">Teste de Performance</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="content">Conteúdo:</label>
-                    <textarea id="content" name="content" rows="6" required></textarea>
-                </div>
-                <button type="submit">Cadastrar</button>
-            </form>
+            </div>
+
+            <div class="table-responsive mt-4">
+                <table class="table table-bordered">
+                    <thead class="thead-dark thead-fixed">
+                        <tr>
+                            <th scope="col">Título</th>
+                            <th scope="col">Descrição</th>
+                            <th scope="col">Tipo de Teste</th>
+                            <th scope="col">Conteúdo</th>
+                            <th scope="col">Data do Cadastro</th>
+                            <th scope="col">Cadastrado Por</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="activiviList">
+                    </tbody>
+                </table>
+            </div>
         </div>
+        </div>
+
+        
     </main>
     <script src="../js/cadastroConteudos.js"></script>
 </body>
