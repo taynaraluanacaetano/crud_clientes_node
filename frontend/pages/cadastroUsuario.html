@@ -17,6 +17,18 @@
             background-color: #f8f9fa;
             color: #212529;
         }
+
+        .table-responsive {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .thead-fixed {
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            background-color: #fff;
+        }
     </style>
 </head>
 
@@ -112,7 +124,7 @@
 
             <div class="table-responsive mt-4">
                 <table class="table table-bordered">
-                    <thead class="thead-dark">
+                    <thead class="thead-dark thead-fixed">
                         <tr>
                             <th scope="col">Nome</th>
                             <th scope="col">Telefone</th>
@@ -120,7 +132,7 @@
                             <th scope="col">Ações</th>
                         </tr>
                     </thead>
-                    <tbody id="userList">
+                    <tbody id="userList" style="overflow-y: scroll;">
                     </tbody>
                 </table>
             </div>
