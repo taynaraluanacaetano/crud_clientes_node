@@ -1,5 +1,31 @@
 const activityService = require('../services/activityService');
 
+const validateActivityData = (activityData) => {
+  const { titulo, descricao } = activityData;
+  const camposObrigatorios = ["titulo", "descricao"];
+
+  const camposFaltando = camposObrigatorios.filter((key) => !activityData[key]);
+  if (camposFaltando.length > 0) {
+    return {
+      isValid: false,
+      message: `Os seguintes campos são obrigatórios: ${camposFaltando.join(", ")}`
+    };
+  }
+
+  const chavesExtras = Object.keys(activityData).filter(
+    (key) => !camposObrigatorios.includes(key)
+  );
+
+  if (chavesExtras.length > 0) {
+    return {
+      isValid: false,
+      message: `Campos extras encontrados: ${chavesExtras.join(", ")}`
+    };
+  }
+
+  return { isValid: true };
+}
+
 exports.getAllActivities = (req, res) => {
   activityService.getAllActivities()
     .then(activities => {
@@ -11,8 +37,29 @@ exports.getAllActivities = (req, res) => {
     });
 };
 
+exports.getActivitiesById = (req, res) => {
+  const activityId = req.params.id;
+  activityService.getActivityById(activityId)
+    .then(activity => {
+      if (!activity) {
+        return res.status(404).json({ error: "Atividade não encontrada" });
+      }
+      res.status(200).json(activity);
+    })
+    .catch(err => {
+      console.error("Erro ao obter dados da atividade:", err.message);
+      res.status(500).json({ error: "Erro ao obter dados da atividade" });
+    });
+};
+
 exports.createActivity = (req, res) => {
   const activityData = req.body;
+  const validation = validateActivityData(activityData);
+
+  if (!validation.isValid) {
+    return res.status(422).json({ error: validation.message });
+  }
+
   activityService.createActivity(activityData)
     .then(createdActivity => {
       res.status(201).json(createdActivity);
@@ -35,3 +82,24 @@ exports.deleteActivity = (req, res) => {
     });
 };
 
+exports.updateActivity = (req, res) => {
+  const activityId = req.params.id;
+  const activityData = req.body;
+  const validation = validateActivityData(activityData);
+
+  if (!validation.isValid) {
+    return res.status(422).json({ error: validation.message });
+  }
+
+  activityService.updateActivity(activityId, activityData)
+    .then(updateActivity => {
+      res.status(200).json(updateActivity);
+    })
+    .catch(err => {
+      if (err.message === "Atividade não encontrada") {
+        return res.status(404).json({ error: err.message });
+      }
+      console.error('Erro ao atualizar atividade:', err.message);
+      res.status(500).json({ error: 'Erro ao atualizar atividade' });
+    });
+};

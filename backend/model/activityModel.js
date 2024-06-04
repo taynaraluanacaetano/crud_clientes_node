@@ -11,6 +11,22 @@ exports.getAllActivities = () => {
   });
 };
 
+exports.getActivityById = (id) => {
+  return new Promise((resolve, reject) => {
+    db.get("SELECT id, titulo, descricao, dataCadastro FROM activities WHERE id = ?", [id], (err, row) => {
+      if (err) {
+        return reject(err);
+      }
+
+      if (!row) {
+        return reject(new Error("Atividade não encontrada"));
+      }
+
+      resolve(row);
+    });
+  });
+};
+
 exports.createActivity = (activityData) => {
   const { titulo, descricao, dataCadastro,  } = activityData;
   return new Promise((resolve, reject) => {
@@ -40,6 +56,33 @@ exports.deleteActivity = (id) => {
       }
       resolve({ message: "Atividade excluída com sucesso" });
     });
+  });
+};
+
+exports.updateActivity = (id, updatedData) => {
+  const { titulo, descricao } = updatedData;
+  return new Promise((resolve, reject) => {
+    db.run(
+      "UPDATE activities SET titulo = ?, descricao = ? WHERE id = ?",
+      [titulo, descricao, id],
+      function (err) {
+        if (err) {
+          return reject(err);
+        }
+
+        db.get("SELECT id, titulo, descricao FROM activities WHERE id = ?", [id], (err, row) => {
+          if (err) {
+            return reject(err);
+          }
+
+          if (!row) {
+            return reject(new Error("Atividade não encontrada!"));
+          }
+
+          resolve(row);
+        });
+      }
+    );
   });
 };
 
