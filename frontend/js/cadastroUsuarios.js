@@ -24,7 +24,7 @@ document.getElementById("userForm").addEventListener("submit", function (event) 
       .then(function (response) {
         clearForm();
         console.log("Usuário atualizado com sucesso!");
-        $("#successModal").modal("show");
+        $("#updateSuccessModal").modal("show"); // Alteração aqui
         updateUserTable();
         document.getElementById("submitBtn").innerText = "Cadastrar Usuário";
         document.getElementById("userForm").reset();
