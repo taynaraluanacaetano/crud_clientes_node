@@ -36,7 +36,7 @@ exports.createUser = async (req, res) => {
 
   try {
     const createdUser = await userService.createUser(userData);
-    res.status(201).json(createdUser);
+    res.status(200).json(createdUser);
   } catch (err) {
     if (err.message === "E-mail já está em uso") {
       return res.status(422).json({ error: err.message });
