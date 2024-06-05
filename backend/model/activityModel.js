@@ -2,7 +2,7 @@ const db = require('./database');
 
 exports.getAllActivities = () => {
   return new Promise((resolve, reject) => {
-    db.all("SELECT * FROM activities", (err, rows) => {
+    db.all("SELECT * FROM activities", [], (err, rows) => {
       if (err) {
         return reject(err);
       }
@@ -28,11 +28,13 @@ exports.getActivityById = (id) => {
 };
 
 exports.createActivity = (activityData) => {
-  const { titulo, descricao, dataCadastro,  } = activityData;
+  const { titulo, descricao } = activityData;
+  const dataCadastro = new Date().toISOString(); // Data atual em UTC
+
   return new Promise((resolve, reject) => {
     db.run(
-      "INSERT INTO activities (titulo, descricao, dataCadastro) VALUES (?, ?, DATETIME('now'));",
-      [titulo, descricao,dataCadastro],
+      "INSERT INTO activities (titulo, descricao, dataCadastro) VALUES (?, ?, ?);",
+      [titulo, descricao, dataCadastro],
       function (err) {
         if (err) {
           return reject(err);
@@ -45,17 +47,6 @@ exports.createActivity = (activityData) => {
         });
       }
     );
-  });
-};
-
-exports.deleteActivity = (id) => {
-  return new Promise((resolve, reject) => {
-    db.run("DELETE FROM activities WHERE id = ?", [id], function (err) {
-      if (err) {
-        return reject(err);
-      }
-      resolve({ message: "Atividade excluída com sucesso" });
-    });
   });
 };
 
@@ -86,3 +77,13 @@ exports.updateActivity = (id, updatedData) => {
   });
 };
 
+exports.deleteActivity = (id) => {
+  return new Promise((resolve, reject) => {
+    db.run("DELETE FROM activities WHERE id = ?", [id], function (err) {
+      if (err) {
+        return reject(err);
+      }
+      resolve({ message: "A atividade foi excluída com sucesso!" });
+    });
+  });
+};

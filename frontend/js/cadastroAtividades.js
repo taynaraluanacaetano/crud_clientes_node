@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
           );
         });
     });
-  
+
     function updateActivityTable() {
       axios
         .get("http://localhost:3000/activities")
@@ -77,25 +77,32 @@ document.addEventListener("DOMContentLoaded", function () {
           var activityList = response.data;
           var activityTable = document.getElementById("activiviList");
           activityTable.innerHTML = "";
-  
+    
           activityList.forEach(function (activity) {
             var newRow = activityTable.insertRow();
+            var formattedDate = "Data não disponível";
+    
+            if (activity.dataCadastro) {
+              var date = new Date(activity.dataCadastro + 'Z');
+              formattedDate = date.toLocaleString();
+            }
+    
             newRow.innerHTML = `
-            <td>${activity.titulo}</td>
-            <td>${activity.descricao}</td>
-            <td>${activity.dataCadastro ? activity.dataCadastro : "Data não disponível"}</td>
-            <td>${activity.cadastradoPor ? activity.cadastradoPor : "Indisponível"}</td>
-            <td>
-                <button type="button" class="btn btn-sm btn-primary btn-action btn-edit" data-activity-id="${activity.id}">Editar</button>
-                <button type="button" class="btn btn-sm btn-danger btn-action btn-delete" data-activity-id="${activity.id}">Excluir</button>
-            </td>
-        `;
+              <td>${activity.titulo}</td>
+              <td>${activity.descricao}</td>
+              <td>${formattedDate}</td>
+              <td>${activity.cadastradoPor ? activity.cadastradoPor : "Indisponível"}</td>
+              <td>
+                  <button type="button" class="btn btn-sm btn-primary btn-action btn-edit" data-activity-id="${activity.id}">Editar</button>
+                  <button type="button" class="btn btn-sm btn-danger btn-action btn-delete" data-activity-id="${activity.id}">Excluir</button>
+              </td>
+            `;
           });
         })
         .then(function () {
           $(document).on("click", ".btn-delete", function () {
             var activityId = $(this).data("activity-id");
-            $("#confirmDeleteModal").modal("show");
+            $("#confirmDeleteModalActivity").modal("show");
             $("#confirmDeleteBtn").data("activity-id", activityId); 
           });
         })
