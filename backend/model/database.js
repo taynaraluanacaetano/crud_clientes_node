@@ -18,6 +18,21 @@ db.serialize(() => {
     dataCadastro TEXT,
     cadastradoPor TEXT
   )`);
+
+  db.run(`CREATE TABLE IF NOT EXISTS conteudo (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    titulo TEXT NOT NULL,
+    descricao TEXT NOT NULL,
+    tipoConteudo TEXT NOT NULL,
+    conteudo TEXT NOT NULL,
+    dataCadastro TEXT NOT NULL
+  )`, (err) => {
+    if (err) {
+      console.error("Erro ao criar tabela:", err.message);
+    } else {
+      console.log("Tabela 'conteudos' criada ou já existe.");
+    }
+  });
 });
 
 module.exports = db;
