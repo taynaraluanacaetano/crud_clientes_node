@@ -39,10 +39,10 @@ Este é um projeto WEB que utiliza as seguintes tecnologias:
 - Navegue até a pasta do backend;
 - Execute o seguinte comando:
 
-         `node app.js`
+         node app.js
 
 - Pronto, você irá notar que uma mensagem foi apresentada no seu terminal do vsCode, apresentando a porta em que sua aplicação está rodando, com isso agora você poderá utilizar uma base de dados local, a base do projeto. 
 - Abra o postman e execute uma consulta GET por exemplo, utilizando o seguinte CURL:
 
-        `curl --location 'http://localhost:3000/users/'`
+        curl --location 'http://localhost:3000/users/'
 - A resposta esperada deverá ser 200 para a sua listagem. Como será a sua primeira execução, é comum que nenhum registro seja listado.
