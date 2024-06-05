@@ -29,7 +29,7 @@ exports.getActivityById = (id) => {
 
 exports.createActivity = (activityData) => {
   const { titulo, descricao } = activityData;
-  const dataCadastro = new Date().toISOString(); // Data atual em UTC
+  const dataCadastro = new Date().toISOString();
 
   return new Promise((resolve, reject) => {
     db.run(
