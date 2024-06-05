@@ -46,10 +46,10 @@
                         <div class="input-group mb-3">
                             <select class="custom-select" id="inputGroupSelect02" required>
                                 <option selected></option>
-                                <option value="1">Teste de Unidade</option>
-                                <option value="2">Teste de Integração</option>
-                                <option value="3">Teste de Aceitação</option>
-                                <option value="3">Teste de Performance</option>
+                                <option value="Teste de Unidade">Teste de Unidade</option>
+                                <option value="Teste de Integração">Teste de Integração</option>
+                                <option value="Teste de Aceitação">Teste de Aceitação</option>
+                                <option value="Teste de Performance">Teste de Performance</option>
                             </select>
                             <div class="input-group-append">
                                 <label class="input-group-text" for="inputGroupSelect02">Tipos de Testes</label>
@@ -59,10 +59,30 @@
                             <label for="content">Conteúdo:</label>
                             <textarea id="content" name="content" rows="6" class="form-control" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                        <button type="submit" id="submitBtn" class="btn btn-primary">Cadastrar</button>
                     </form>
                 </div>
             </div>
+
+            <div id="successModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="successModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="successModalLabel">Sucesso!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Registro Cadastrado com Sucesso!
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
             <div class="table-responsive mt-4">
                 <table class="table table-bordered">
@@ -84,7 +104,7 @@
         </div>
         </div>
 
-        
+
     </main>
     <script src="../js/cadastroConteudos.js"></script>
 </body>
