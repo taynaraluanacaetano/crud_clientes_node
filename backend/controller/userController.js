@@ -36,7 +36,7 @@ exports.createUser = async (req, res) => {
 
   try {
     const createdUser = await userService.createUser(userData);
-    res.status(200).json(createdUser);
+    res.status(201).json(createdUser);
   } catch (err) {
     if (err.message === "E-mail já está em uso") {
       return res.status(422).json({ error: err.message });
@@ -95,7 +95,7 @@ exports.updateUser = (req, res) => {
 
   userService.updateUser(userId, userData)
     .then(updatedUser => {
-      res.status(200).json(updatedUser);
+      res.status(201).json(updatedUser);
     })
     .catch(err => {
       if (err.message === "Usuário não encontrado") {

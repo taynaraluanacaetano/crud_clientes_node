@@ -69,7 +69,7 @@ function updateConteudoTable() {
             <td>${conteudo.tipoConteudo}</td>
             <td>${conteudo.conteudo}</td>
             <td>${conteudo.dataCadastro}</td>
-            <td>${conteudo.cadastradoPor}</td>
+            <td>${conteudo.cadastradoPor ? conteudo.cadastradoPor : "Indisponível"}</td>
             <td>
               <button type="button" class="btn btn-sm btn-primary btn-action btn-edit" data-content-id="${conteudo.id}">Editar</button>
               <button type="button" class="btn btn-sm btn-danger btn-action btn-delete" data-content-id="${conteudo.id}">Excluir</button>
@@ -94,19 +94,23 @@ function deleteConteudo(contentId) {
     .then(function (response) {
       console.log("Conteúdo excluído com sucesso!");
       $("#confirmDeleteModal").modal("hide");
-      $("#deleteSuccessModal").modal("show");
-      updateConteudoTable();
+
+      $("#successModalRemoved").modal("show");
+      updateConteudoTable(); 
     })
     .catch(function (error) {
-      console.error("Erro ao excluir conteúdo:", error);
+      console.error("Erro ao excluir conteúdo!:", error);
     });
 }
 
-$(document).on("click", ".btn-ok", function () {
-  var contentId = $(this).data("content-id");
-  deleteConteudo(contentId);
+$("#successModalRemoved .btn-ok").on("click", function () {
+  $("#successModalRemoved").modal("hide");
 });
 
-$(document).ready(function () {
-  updateConteudoTable();
+updateConteudoTable();
+
+$(document).on("click", "#confirmDeleteBtn", function () {
+  var contentId = $(this).data("conteudo-id");
+  deleteConteudo(contentId);
+
 });

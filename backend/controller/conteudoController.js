@@ -46,7 +46,7 @@ exports.createConteudo = (req, res) => {
   conteudoService
     .createConteudo(conteudoData)
     .then((createdConteudo) => {
-      res.status(200).json(createdConteudo);
+      res.status(201).json(createdConteudo);
     })
     .catch((err) => {
       console.error("Erro ao criar conteúdo:", err.message);
@@ -113,7 +113,7 @@ exports.updateConteudo = (req, res) => {
   conteudoService
     .updateConteudo(conteudoId, conteudoData)
     .then((updateConteudo) => {
-      res.status(200).json(updateConteudo);
+      res.status(201).json(updateConteudo);
     })
     .catch((err) => {
       if (err.message === "O conteúdo não foi encontrado!") {
