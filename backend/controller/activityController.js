@@ -101,7 +101,7 @@ exports.updateActivity = (req, res) => {
   activityService
     .updateActivity(activityId, activityData)
     .then((updateActivity) => {
-      res.status(200).json(updateActivity);
+      res.status(201).json(updateActivity);
     })
     .catch((err) => {
       if (err.message === "Atividade não encontrada") {

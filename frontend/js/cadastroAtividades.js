@@ -138,4 +138,3 @@ document.addEventListener("DOMContentLoaded", function () {
       deleteActivity(activityId);
     });
   });
-s  
