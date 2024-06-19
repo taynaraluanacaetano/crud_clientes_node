@@ -8,7 +8,6 @@ router.get('/:id', conteudoController.getConteudoById);
 router.delete('/:id', conteudoController.deleteConteudo);
 router.put('/:id', conteudoController.updateConteudo);
 
-// routes/conteudos.js
 
 /**
  * @swagger
