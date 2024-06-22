@@ -1,4 +1,4 @@
-const db = require('./database');
+const db = require("./database");
 
 const removePasswordField = (user) => {
   const { senha, ...userWithoutPassword } = user;
@@ -28,12 +28,16 @@ exports.createUser = (userData) => {
           return reject(err);
         }
 
-        db.get("SELECT id, nome, telefone, email FROM users WHERE id = ?", [this.lastID], (err, row) => {
-          if (err) {
-            return reject(err);
+        db.get(
+          "SELECT id, nome, telefone, email FROM users WHERE id = ?",
+          [this.lastID],
+          (err, row) => {
+            if (err) {
+              return reject(err);
+            }
+            resolve(row);
           }
-          resolve(row);
-        });
+        );
       }
     );
   });
@@ -41,17 +45,21 @@ exports.createUser = (userData) => {
 
 exports.getUserById = (id) => {
   return new Promise((resolve, reject) => {
-    db.get("SELECT id, nome, telefone, email FROM users WHERE id = ?", [id], (err, row) => {
-      if (err) {
-        return reject(err);
-      }
+    db.get(
+      "SELECT id, nome, telefone, email FROM users WHERE id = ?",
+      [id],
+      (err, row) => {
+        if (err) {
+          return reject(err);
+        }
 
-      if (!row) {
-        return reject(new Error("Usuário não encontrado"));
-      }
+        if (!row) {
+          return reject(new Error("Usuário não encontrado"));
+        }
 
-      resolve(removePasswordField(row));
-    });
+        resolve(removePasswordField(row));
+      }
+    );
   });
 };
 
@@ -61,10 +69,14 @@ exports.deleteUser = (id) => {
       if (err) {
         return reject(err);
       }
-      resolve({ message: "Usuário excluído com sucesso" });
+      if (this.changes === 0) {
+        return resolve(null); // Nenhuma linha foi deletada
+      }
+      resolve(true); // Usuário deletado com sucesso
     });
   });
 };
+
 
 exports.updateUser = (id, updatedData) => {
   const { nome, telefone, senha } = updatedData;
@@ -77,17 +89,21 @@ exports.updateUser = (id, updatedData) => {
           return reject(err);
         }
 
-        db.get("SELECT id, nome, telefone, email FROM users WHERE id = ?", [id], (err, row) => {
-          if (err) {
-            return reject(err);
-          }
+        db.get(
+          "SELECT id, nome, telefone, email FROM users WHERE id = ?",
+          [id],
+          (err, row) => {
+            if (err) {
+              return reject(err);
+            }
 
-          if (!row) {
-            return reject(new Error("Usuário não encontrado"));
-          }
+            if (!row) {
+              return reject(new Error("Usuário não encontrado"));
+            }
 
-          resolve(removePasswordField(row));
-        });
+            resolve(removePasswordField(row));
+          }
+        );
       }
     );
   });

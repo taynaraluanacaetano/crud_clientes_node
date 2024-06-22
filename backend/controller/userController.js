@@ -1,14 +1,16 @@
-const userService = require('../services/userService');
+const userService = require("../services/userService");
 
 const validateUserData = (userData) => {
   const { nome, telefone, email, senha } = userData;
   const camposObrigatorios = ["nome", "telefone", "email", "senha"];
-  
+
   const camposFaltando = camposObrigatorios.filter((key) => !userData[key]);
   if (camposFaltando.length > 0) {
     return {
       isValid: false,
-      message: `Os seguintes campos são obrigatórios: ${camposFaltando.join(", ")}`
+      message: `Os seguintes campos são obrigatórios: ${camposFaltando.join(
+        ", "
+      )}`,
     };
   }
 
@@ -19,7 +21,7 @@ const validateUserData = (userData) => {
   if (chavesExtras.length > 0) {
     return {
       isValid: false,
-      message: `Campos extras encontrados: ${chavesExtras.join(", ")}`
+      message: `Campos extras encontrados: ${chavesExtras.join(", ")}`,
     };
   }
 
@@ -41,32 +43,34 @@ exports.createUser = async (req, res) => {
     if (err.message === "E-mail já está em uso") {
       return res.status(422).json({ error: err.message });
     }
-    console.error('Erro ao inserir usuário:', err.message);
-    res.status(500).json({ error: 'Erro ao inserir usuário' });
+    console.error("Erro ao inserir usuário:", err.message);
+    res.status(500).json({ error: "Erro ao inserir usuário" });
   }
 };
 
 exports.getAllUsers = (req, res) => {
-  userService.getAllUsers()
-    .then(users => {
+  userService
+    .getAllUsers()
+    .then((users) => {
       res.status(200).json(users);
     })
-    .catch(err => {
-      console.error('Erro ao buscar usuários:', err.message);
-      res.status(500).json({ error: 'Erro ao buscar usuários' });
+    .catch((err) => {
+      console.error("Erro ao buscar usuários:", err.message);
+      res.status(500).json({ error: "Erro ao buscar usuários" });
     });
 };
 
 exports.getUserById = (req, res) => {
   const userId = req.params.id;
-  userService.getUserById(userId)
-    .then(user => {
+  userService
+    .getUserById(userId)
+    .then((user) => {
       if (!user) {
         return res.status(404).json({ error: "Usuário não encontrado" });
       }
       res.status(200).json(user);
     })
-    .catch(err => {
+    .catch((err) => {
       console.error("Erro ao obter dados do usuário:", err.message);
       res.status(404).json({ error: "Usuário não encontrado" });
     });
@@ -74,16 +78,17 @@ exports.getUserById = (req, res) => {
 
 exports.deleteUser = (req, res) => {
   const userId = req.params.id;
-  userService.deleteUser(userId)
-    .then(() => {
-      if (!user) {
+  userService
+    .deleteUser(userId)
+    .then((result) => {
+      if (!result) {
         return res.status(404).json({ error: "Usuário não encontrado" });
       }
       res.status(204).end();
     })
-    .catch(err => {
-      console.error('Usuário não encontrado:', err.message);
-      res.status(404).json({ error: 'Usuário não encontrado' });
+    .catch((err) => {
+      console.error("Erro ao deletar usuário:", err.message);
+      res.status(500).json({ error: "Erro no servidor" });
     });
 };
 
@@ -96,15 +101,16 @@ exports.updateUser = (req, res) => {
     return res.status(422).json({ error: validation.message });
   }
 
-  userService.updateUser(userId, userData)
-    .then(updatedUser => {
+  userService
+    .updateUser(userId, userData)
+    .then((updatedUser) => {
       res.status(201).json(updatedUser);
     })
-    .catch(err => {
+    .catch((err) => {
       if (err.message === "Usuário não encontrado") {
         return res.status(404).json({ error: err.message });
       }
-      console.error('Erro ao atualizar usuário:', err.message);
-      res.status(404).json({ error: 'Usuário não encontrado' });
+      console.error("Erro ao atualizar usuário:", err.message);
+      res.status(404).json({ error: "Usuário não encontrado" });
     });
 };
