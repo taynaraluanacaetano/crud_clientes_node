@@ -68,7 +68,7 @@ exports.getUserById = (req, res) => {
     })
     .catch(err => {
       console.error("Erro ao obter dados do usuário:", err.message);
-      res.status(500).json({ error: "Erro ao obter dados do usuário" });
+      res.status(404).json({ error: "Usuário não encontrado" });
     });
 };
 
@@ -76,11 +76,14 @@ exports.deleteUser = (req, res) => {
   const userId = req.params.id;
   userService.deleteUser(userId)
     .then(() => {
+      if (!user) {
+        return res.status(404).json({ error: "Usuário não encontrado" });
+      }
       res.status(204).end();
     })
     .catch(err => {
-      console.error('Erro ao excluir usuário:', err.message);
-      res.status(500).json({ error: 'Erro ao excluir usuário' });
+      console.error('Usuário não encontrado:', err.message);
+      res.status(404).json({ error: 'Usuário não encontrado' });
     });
 };
 
@@ -102,6 +105,6 @@ exports.updateUser = (req, res) => {
         return res.status(404).json({ error: err.message });
       }
       console.error('Erro ao atualizar usuário:', err.message);
-      res.status(500).json({ error: 'Erro ao atualizar usuário' });
+      res.status(404).json({ error: 'Usuário não encontrado' });
     });
 };
